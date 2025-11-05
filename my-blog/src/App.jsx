@@ -1,17 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter,Route, Routes } from "react-router-dom";
+import Header from "./components/Header.jsx";
+import Home from "./pages/Home.jsx";
+import Blog from "./pages/Blog.jsx";
+import Article from "./pages/Article.jsx";
+import ArticleThumbnail from "./components/ArticleThumbnail.jsx";
+import "./App.css";
+import ArticleList from "./components/ArticleList.jsx";
+import BlogCard from "./components/BlogCard.jsx";
+import "./App.css";
+import './index.css'
 
-function App() {
-  const [count, setCount] = useState(0)
 
+const App = () => {
   return (
-    <>
+    <div>
+    
+    {/* <Header /> */}
+    <Home />
+    <Blog />
 
-      <h1>Bienvenue sur mon Blog </h1>
-    </>
-  )
+
+   </div>
+  );
 }
 
-export default App
+export default App;
+
+
+
