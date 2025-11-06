@@ -2,53 +2,95 @@
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
- 
+  background-image: url("./assets/espace.jpg");
+  background-size: cover;        
+  background-position: center;   
+  background-repeat: no-repeat;   
+  background-attachment: fixed;   /* optionnel : effet de fond fixe au scroll */
+  height: 100vh;                  /* prend toute la hauteur visible */
 }
+
 
 main {
   padding: 2rem;
   min-height: 100vh;
-   background-image: url("./assets/espace.jpg");
   background-size: cover;       
   background-position: center;   
   background-repeat: no-repeat;  
 }
 
-/* === Header === */
+/* === Header Modernisé et équilibré === */
 .header {
-  background-color: #000; 
+  background-color: #0a1939f3; 
   color: white;
-  padding: 10px 20px;     
+  padding: 20px 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #222; /* ligne plus fine */
-  box-shadow: 0 1px 4px rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid #222;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  font-family: 'Arial', sans-serif;
+  top: 0;
+  z-index: 1000;
+  box-shadow: rgba(255, 255, 255, 0.35) 0px 8px 32px 0px;
+  
 }
+
+.logo {
+  height: 80px;          
+  width: auto;
+  margin-right: 20px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 7px 29px 0px;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
 
 .header h1 {
-  font-size: 1.4rem;
-  margin: 0;
-  font-weight: 700;
+  flex: 1;
   text-align: center;
+  font-size: 2.4rem;
+  margin: 0;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, #ffffff, #b0c4de, #87cefa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 0 4px rgba(255, 255, 255, 0.4),
+    0 0 8px rgba(173, 216, 230, 0.3);
+  font-family: 'Poppins', sans-serif; /* style lisible et élégant */
 }
 
-
+/* Navigation à droite */
 .header nav {
   display: flex;
-  gap: 1rem;               
+  gap: 1.8rem;
 }
 
 .header nav a {
-  color: white;
+  color: #ffffff;
   text-decoration: none;
-  font-size: 1rem;        
-  transition: color 0.3s ease;
+  font-size: 1.1rem; 
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
 }
 
 .header nav a:hover {
-  color: #00bfff;         
+  color: #00bfff;
+  background-color: rgba(0, 191, 255, 0.1);
+  box-shadow: 0 0 6px rgba(0, 191, 255, 0.5);
 }
+
+
 
 /* === Home page === */
 .home-page {
@@ -57,7 +99,7 @@ main {
 }
 
 .home-title {
- color: #e0e0e0; /* couleur principale argentée */
+ color: #e0e0e0; 
   font-size: 5em;
   text-transform: uppercase;
   text-align: center;
@@ -91,6 +133,10 @@ main {
   box-shadow: 0 4px 10px rgba(0, 191, 255, 0.3);
 }
 
+.blog-card:active {
+  transform: scale(1);
+}
+
 .blog-card-image {
   width: 100%;
   height: 180px;
@@ -102,6 +148,7 @@ main {
 }
 
 .blog-card-title {
+  color: #275891;
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
 }

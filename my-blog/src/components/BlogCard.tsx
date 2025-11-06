@@ -1,7 +1,13 @@
 
 import { Link } from "react-router-dom";
+interface BlogCardProps {
+  id: number ;
+  title: string;
+  excerpt: string;
+  image: string;
+}
 
-export default function BlogCard({ id, title, excerpt, image }) {
+export default function BlogCard({ id, title, excerpt, image }: BlogCardProps) {
   return (
     <article className="blog-card">
       <img src={image} alt={title} className="blog-card-image" />

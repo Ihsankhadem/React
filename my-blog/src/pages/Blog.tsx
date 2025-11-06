@@ -24,7 +24,7 @@ const articles = [
     excerpt:
       "Explorez les titans gazeux et leurs fascinants systèmes d’anneaux et de lunes.",
     image:
-      "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&w=1000&q=80",
   },
   {
     id: 4,
@@ -65,6 +65,22 @@ const articles = [
       "Des missions Artemis à SpaceX, suivez les nouvelles conquêtes de l’humanité dans l’espace.",
     image:
       "https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=800&q=80",
+  },
+    {
+    id: 9,
+    title: "Les exoplanètes : mondes au-delà du Système solaire",
+    excerpt:
+      "Des planètes lointaines tournent autour d’autres étoiles : certaines pourraient abriter la vie.",
+    image:
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1000&q=80",
+  },
+  {
+    id: 10,
+    title: "Le Big Bang et la naissance de l’univers",
+    excerpt:
+      "Remontez aux origines du temps et découvrez comment tout a commencé il y a 13,8 milliards d’années.",
+    image:
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80"
   },
 ];
 

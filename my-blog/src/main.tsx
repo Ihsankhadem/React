@@ -2,15 +2,15 @@
 import "./App.css";
 import './index.css'
 import ReactDOM from "react-dom/client";
-import App from './App.jsx'
+import App from './App.js'
 import React, { StrictMode } from 'react'
 import { BrowserRouter,Route, Routes } from "react-router-dom";
-import Header from "./components/Header.jsx";
+import Header from "./components/Header.tsx";
 
 
 
-const rootdiv = document.getElementById("root");
-const root = ReactDOM.createRoot(rootdiv);
+const rootdiv = document.getElementById("root") as HTMLDivElement;
+const root = ReactDOM.createRoot(rootdiv)
 root.render(
   <React.StrictMode>
     <BrowserRouter>
