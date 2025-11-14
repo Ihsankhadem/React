@@ -1,29 +1,28 @@
-
-import "./App.css";
-import './index.css'
+import React from "react";
 import ReactDOM from "react-dom/client";
-import App from './App.js'
-import React, { StrictMode } from 'react'
-import { BrowserRouter,Route, Routes } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import App from "./App";
 import Header from "./components/Header.tsx";
-import Article from "./pages/Article.tsx";
 import Blog from "./pages/Blog.tsx";
+import Article from "./pages/Article.tsx";
 import Contact from "./pages/Contact.tsx";
+import SearchBar from "./components/SearchBar.tsx";
+import "./index.css";
+import "./App.css";
 
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
-
-const rootdiv = document.getElementById("root") as HTMLDivElement;
-const root = ReactDOM.createRoot(rootdiv)
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Header />
-      <main className="bg-gray-900">
+      <main className="bg-gray-900 min-h-screen text-white">
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<Article />} /> 
           <Route path="/contact" element={<Contact />} />
-          <Route path="/article/:id" element={<Article />} />
+          <Route path="/search" element={<SearchBar />} />
         </Routes>
       </main>
       {/* <Footer /> */}

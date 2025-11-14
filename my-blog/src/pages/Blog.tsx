@@ -1,95 +1,65 @@
-import BlogCard from "../components/BlogCard.jsx";
-import "../App.css";
 
-const articles = [
-  {
-    id: 1,
-    title: "Le Soleil : le cœur du Système solaire",
-    excerpt:
-      "Découvrez comment notre étoile nourrit la vie sur Terre et influence les planètes.",
-    image:
-      "https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 2,
-    title: "La Lune et ses mystères",
-    excerpt:
-      "Crêtes, mers, éclipses : plongez dans les secrets du seul satellite naturel de la Terre.",
-    image:
-      "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 3,
-    title: "Les planètes géantes : Jupiter et Saturne",
-    excerpt:
-      "Explorez les titans gazeux et leurs fascinants systèmes d’anneaux et de lunes.",
-    image:
-      "https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&w=1000&q=80",
-  },
-  {
-    id: 4,
-    title: "Mars : la planète rouge",
-    excerpt:
-      "Entre mythes et exploration, découvrez pourquoi Mars fascine tant les scientifiques.",
-    image:
-      "https://images.unsplash.com/photo-1454789548928-9efd52dc4031?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 5,
-    title: "Les comètes et les astéroïdes",
-    excerpt:
-      "Ces voyageurs glacés ou rocheux détiennent les secrets de la naissance du Système solaire.",
-    image:
-      "https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 6,
-    title: "La Voie lactée et les galaxies voisines",
-    excerpt:
-      "Partez à la découverte de notre galaxie et de ses milliards d’étoiles.",
-    image:
-      "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 7,
-    title: "Les trous noirs : les mystères de l’espace-temps",
-    excerpt:
-      "Que se passe-t-il au-delà de l’horizon des événements ? Découvrez ces monstres cosmiques.",
-    image:
-      "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 8,
-    title: "L’exploration spatiale moderne",
-    excerpt:
-      "Des missions Artemis à SpaceX, suivez les nouvelles conquêtes de l’humanité dans l’espace.",
-    image:
-      "https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=800&q=80",
-  },
-    {
-    id: 9,
-    title: "Les exoplanètes : mondes au-delà du Système solaire",
-    excerpt:
-      "Des planètes lointaines tournent autour d’autres étoiles : certaines pourraient abriter la vie.",
-    image:
-      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1000&q=80",
-  },
-  {
-    id: 10,
-    title: "Le Big Bang et la naissance de l’univers",
-    excerpt:
-      "Remontez aux origines du temps et découvrez comment tout a commencé il y a 13,8 milliards d’années.",
-    image:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80"
-  },
-];
+
+import BlogCard from "../components/BlogCard.tsx";
+import "../App.css";
+import SearchBar from "../components/SearchBar.tsx";
+import { useLocation } from "react-router-dom";
+import { use, useEffect, useState } from "react";
+
 
 export default function Blog() {
+  // Récupère le texte recherché depuis l’URL
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const searchQuery = queryParams.get("search")?.toLowerCase() || "";
+  const [articles, setArticles] = useState<any[]>([]);
+// fethch les articles depuis une API ou une base de données
+
+
+useEffect(() => {
+    fetch("http://localhost:3001/articles")
+      .then((response) => response.json())
+      .then((data) => setArticles(data))
+      .catch((error) => console.error("Erreur lors du chargement des articles :", error));  
+      
+
+
+      
+}, []);
+console.log(articles);
+   const filteredArticles = articles.filter(
+    (article) =>
+      article.title.toLowerCase().includes(searchQuery) ||
+      article.excerpt.toLowerCase().includes(searchQuery)
+  );
+ 
+
+
+
+  // Filtre les articles selon le texte tapé
+
+
   return (
-    <section className="blog-container">
-      {articles.map((article) => (
-        <BlogCard key={article.id} {...article} />
-      ))}
-    </section>
+    <>
+      <div className="search">
+        <SearchBar />
+      </div>
+
+      <section className="blog-container">
+        {filteredArticles.length > 0 ? (
+          filteredArticles.map((article) => (
+            <BlogCard key={article.id} {...article} />
+          ))
+        ) : (
+          <p className="no-results">Aucun article ne correspond à ta recherche </p>
+        )}
+      </section>
+    </>
   );
 }
+
+
+
+// export default function Blog() {
+
+// }

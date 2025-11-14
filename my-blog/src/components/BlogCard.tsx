@@ -1,22 +1,52 @@
+// | Élément              | Rôle                                                       |
+// | -------------------- | ---------------------------------------------------------- |
+// | `Link`               | Crée un lien interne dans ton app (sans recharger la page) |
+// | `to={`/blog/${id}`}` | Génère une URL dynamique selon l’article                   |
+// | `useParams()`        | Récupère les valeurs de l’URL actuelle (ici `id`)          |
+// | `Article`            | Affiche le contenu de la page selon l’ID récupéré          |
+
+
+// BlogCard = les aperçus de tes articles.
+// Article = la “page de détail” d’un article.
+// Link + useParams() = le pont entre les deux
+
 
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
 interface BlogCardProps {
   id: number ;
   title: string;
   excerpt: string;
   image: string;
+  liked?: boolean;
 }
 
-export default function BlogCard({ id, title, excerpt, image }: BlogCardProps) {
+export default function BlogCard({ id, title, excerpt, image, liked = false }: BlogCardProps) {
+  const [isLiked, setIsLiked] = useState<boolean>(liked);
   return (
     <article className="blog-card">
       <img src={image} alt={title} className="blog-card-image" />
       <div className="blog-card-body">
         <h3 className="blog-card-title">{title}</h3>
         <p className="blog-card-excerpt">{excerpt}</p>
+        
         <Link to={`/blog/${id}`} className="blog-card-link">
           Lire l’article →
         </Link>
+
+        <div className="blog-card-like">
+          <button
+            className="like-button"
+// 2. () => setIsLiked(prev => !prev) = setIsLiked est la fonction qui met à jour l’état isLiked (créé avec useState).
+// prev représente la valeur actuelle de isLiked. !prev inverse cette valeur 
+            onClick={() => setIsLiked(prev => !prev)}
+            aria-label={isLiked ? "Vous aimez cet article" : "Aimer cet article"}
+          >
+            {isLiked ? "❤️" : "🤍"} 
+          </button>
+        </div>
+
       </div>
     </article>
   );

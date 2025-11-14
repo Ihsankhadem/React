@@ -1,32 +1,27 @@
 
 
 import { useState } from "react";
-
-export interface FormContactProps {
-onSubmit: (data: {name: string; email: string; message: string}) => void;
-};
-
-
  
-function FormContact ({onSubmit}: FormContactProps) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+function FormContact () {
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
 
    function RegisterFormContact(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    onSubmit({name, email, message});
+    e.preventDefault(); // Empêche le rechargement de la page par la nagigater lors de la soumission du formulaire
+    console.log({name, email, message});
    }
   
   
   return (
-    <form onSubmit ={RegisterFormContact}>
+    <form onSubmit={RegisterFormContact}>
     
       <label>
         Nom :
         <input
           type="text"
           value={name}
+          autoComplete="given-name"
           onChange={(e) => setName(e.target.value)}
           required
         />
@@ -37,6 +32,7 @@ function FormContact ({onSubmit}: FormContactProps) {
         <input
           type="email"
           value={email}
+          autoComplete="email"
           onChange={(e) => setEmail(e.target.value)}
           required
         />

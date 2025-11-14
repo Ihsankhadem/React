@@ -1,43 +1,44 @@
-
+/* ========================================
+   Global & Body
+   ======================================== */
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
   background-image: url("./assets/espace.jpg");
-  background-size: cover;        
-  background-position: center;   
-  background-repeat: no-repeat;   
-  background-attachment: fixed;   /* optionnel : effet de fond fixe au scroll */
-  height: 100vh;                  /* prend toute la hauteur visible */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* fond fixe */
+  height: 100vh;
 }
-
 
 main {
   padding: 2rem;
   min-height: 100vh;
-  background-size: cover;       
-  background-position: center;   
-  background-repeat: no-repeat;  
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-/* === Header Modernisé et équilibré === */
+/* ========================================
+   Header
+   ======================================== */
 .header {
-  background-color: #0a1939f3; 
+  background-color: #0a1939f3;
   color: white;
   padding: 20px 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #222;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
   font-family: 'Arial', sans-serif;
   top: 0;
   z-index: 1000;
   box-shadow: rgba(255, 255, 255, 0.35) 0px 8px 32px 0px;
-  
 }
 
 .logo {
-  height: 80px;          
+  height: 80px;
   width: auto;
   margin-right: 20px;
   border-radius: 50%;
@@ -50,7 +51,6 @@ main {
   transform: scale(1.05);
 }
 
-
 .header h1 {
   flex: 1;
   text-align: center;
@@ -62,13 +62,11 @@ main {
   background: linear-gradient(90deg, #ffffff, #b0c4de, #87cefa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow:
-    0 0 4px rgba(255, 255, 255, 0.4),
-    0 0 8px rgba(173, 216, 230, 0.3);
-  font-family: 'Poppins', sans-serif; /* style lisible et élégant */
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.4),
+               0 0 8px rgba(173, 216, 230, 0.3);
+  font-family: 'Poppins', sans-serif;
 }
 
-/* Navigation à droite */
 .header nav {
   display: flex;
   gap: 1.8rem;
@@ -77,7 +75,7 @@ main {
 .header nav a {
   color: #ffffff;
   text-decoration: none;
-  font-size: 1.1rem; 
+  font-size: 1.1rem;
   font-weight: 500;
   padding: 6px 12px;
   border-radius: 6px;
@@ -90,23 +88,24 @@ main {
   box-shadow: 0 0 6px rgba(0, 191, 255, 0.5);
 }
 
-/* ====Contact======= */
+/* ========================================
+   Contact
+   ======================================== */
 .contact-title {
   text-align: center;
   color: #e0e0e0;
   font-size: 2rem;
   margin-bottom: 1rem;
-  text-shadow:
-    0 0 2px #ffffff,
-    0 0 4px #e0e0e0,
-    0 0 6px #c0c0c0;
+  text-shadow: 0 0 2px #ffffff,
+               0 0 4px #e0e0e0,
+               0 0 6px #c0c0c0;
 }
 
-/* === Formulaire de contact === */
+/* Formulaire */
 form {
   max-width: 500px;
   margin: 2rem auto;
-  background: rgba(10, 25, 57, 0.85); /* bleu foncé translucide */
+  background: rgba(10, 25, 57, 0.85);
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 191, 255, 0.25);
@@ -150,7 +149,6 @@ form textarea {
   resize: vertical;
 }
 
-/* === Bouton envoyer === */
 form button {
   background: linear-gradient(90deg, #0072ff, #00c6ff);
   color: white;
@@ -175,30 +173,164 @@ form button:active {
   transform: translateY(0);
 }
 
-
-/* === Home page === */
+/* =============================
+   HOME PAGE – Agencement moderne
+   ============================= */
 .home-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 2rem;
+  color: #fff;
   text-align: center;
-  padding: 2rem 1rem;
+  min-height: 100vh;
 }
 
-.home-title {
- color: #e0e0e0; 
-  font-size: 5em;
-  text-transform: uppercase;
-  text-align: center;
-  text-shadow:
-    0 0 2px #ffffff,
-    0 0 4px #e0e0e0,
-    0 0 6px #c0c0c0;
-  font-size: 2rem;
-  font-weight: bold; 
-  letter-spacing: 2px;
+/* HERO (titre + intro + bouton) */
+.home-hero {
+  max-width: 800px;
+  margin-bottom: 3rem;
+}
+
+/* .home-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #00eaff, #b388ff);
+  /* -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+
+
+.home-intro {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  color: #eaf6ff;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+}
+
+/* Bouton principal */
+.home-link {
+  display: inline-block;
+  background: rgba(0, 191, 255, 0.3);
+  color: white;
+  padding: 0.9rem 1.6rem;
+  border-radius: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 191, 255, 0.4);
+}
+.home-link:hover {
+  background: rgba(0, 191, 255, 0.6);
+  transform: translateY(-3px);
+}
+
+/* DEUX COLONNES */
+.home-content {
+  display: flex;
+  justify-content: center;
+  gap: 10rem;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* BULLES TRANSLUCIDES */
+.home-fact,
+.home-populaires {
+  flex: 1;
+  min-width: 300px;
+  padding: 2rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+  text-align: left;
+}
+
+.home-fact h2 {
+  color: #00eaff;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px #00eaff;
+}
+
+.home-populaires h2 {
+  color: #ffd86b;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px #ffd86b;
+}
+
+.home-populaires ul {
+  list-style: none;
+  padding: 0;
+}
+.home-populaires a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+.home-populaires a:hover {
+  color: #ffd86b;
+}
+
+/* COMMENTAIRES */
+.home-temoignages {
+  width: 100%;
+  max-width: 900px;
+  margin-top: 4rem;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: left;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+}
+.home-temoignages h2 {
+  color: #bfa8ff;
+  margin-bottom: 1rem;
+}
+.temoignage {
+  margin-bottom: 1rem;
+  border-left: 3px solid #bfa8ff;
+  padding-left: 1rem;
+}
+.temoignage strong {
+  display: block;
+  color: #fff;
 }
 
 
-/* === Blog cards === */
 
+
+/* ============================
+   Lien vers le blog
+   ============================ */
+.home-link {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  background-color: rgba(0, 191, 255, 0.2);
+  color: #fff;
+  text-decoration: none;
+  border: 2px solid #00bfff;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(3px);
+}
+
+.home-link:hover {
+  background-color: rgba(0, 191, 255, 0.4);
+  transform: scale(1.05);
+  box-shadow: 0 0 12px #00bfff;
+}
+
+
+/* ========================================
+   Blog cards
+   ======================================== */
 .blog-container {
   display: grid;
   gap: 2rem;
@@ -216,7 +348,6 @@ form button:active {
 .blog-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 10px rgba(0, 191, 255, 0.3);
-  
 }
 
 .blog-card:active {
@@ -254,50 +385,116 @@ form button:active {
   color: #66d9ff;
 }
 
-/* === Article page === */
-/* .article-page {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 4rem 2rem;
-  text-align: center;
+
+.blog-card-like {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
 }
+
+/* Bouton like */
+.like-button {
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #ff4d6d;
+  background: linear-gradient(90deg, #ff4d6d, #ff6fbf);
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  text-shadow: 0 0 6px #ff4d6d, 0 0 12px #ff6fbf;
+  box-shadow: 0 0 8px #ff4d6d, 0 0 20px #ff6fbf inset;
+  transition: all 0.2s ease;
+}
+
+.like-button:hover {
+  transform: scale(1.2);
+  text-shadow: 0 0 12px #ff4d6d, 0 0 24px #ff6fbf;
+  box-shadow: 0 0 12px #ff4d6d, 0 0 25px #ff6fbf inset;
+}
+
+.like-button:focus {
+  outline: none;
+}
+
+/* Optionnel : compteur de likes */
+.blog-card-like-count {
+  font-size: 1rem;
+  color: #e8f9ff;
+  text-shadow: 0 0 4px #00eaff;
+}
+
+.search-bar {
+  width: 100%;
+  max-width: 400px;
+  margin: 2rem auto;
+  display: flex;
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: 2px solid #00bfff;
+  border-radius: 8px 0 0 8px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.search-button {
+  padding: 0.8rem 1.2rem;
+  border: 2px solid #00bfff;
+  border-left: none;
+  border-radius: 0 8px 8px 0;
+  background-color: #00bfff;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #0099e6;
+}
+
 
 .article-title {
   font-size: 2.5rem;
+  font-weight: 700;
   margin-bottom: 1rem;
-}
+  color: #00eaff;
+  text-shadow: 0 0 10px #00eaff;
+} 
 
 .article-content {
   font-size: 1.1rem;
-  color: #ccc;
+  line-height: 1.8;
+  color: #e0e0e0;
+  margin-bottom: 2rem;
+}
+
+.article-contents {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #e0e0e0;
   margin-bottom: 2rem;
 }
 
 .article-back-link {
-  color: #00bfff;
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: rgba(0, 191, 255, 0.3);
+  color: white;
   text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 191, 255, 0.4);
 }
 
 .article-back-link:hover {
-  color: #66d9ff;
+  background-color: rgba(0, 191, 255, 0.5);
+  transform: translateY(-3px);
 }
-.article-thumbnail{
-  width: 300px;
-  background-color: white;
-  background-size: contain;
-  color: black;
-  text-align: center;
-  padding: 10px;
-  border-radius: 8px;
-  margin: 2rem;
 
-}
-.article-list{
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-}
-.article-thumbnail img {
-  height: 200px;
-  width: 300px;
-  object-fit: cover;
-} */
+
