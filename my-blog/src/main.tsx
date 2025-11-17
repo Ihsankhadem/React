@@ -9,6 +9,7 @@ import Contact from "./pages/Contact.tsx";
 import SearchBar from "./components/SearchBar.tsx";
 import "./index.css";
 import "./App.css";
+import NotFound from "./components/NotFound.tsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
@@ -23,6 +24,7 @@ root.render(
           <Route path="/blog/:id" element={<Article />} /> 
           <Route path="/contact" element={<Contact />} />
           <Route path="/search" element={<SearchBar />} />
+          <Route path="*" element={<NotFound/>}/>
         </Routes>
       </main>
       {/* <Footer /> */}

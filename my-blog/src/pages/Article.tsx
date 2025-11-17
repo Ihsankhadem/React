@@ -8,7 +8,7 @@ export default function Article() {
     <article className="article-page max-w-3xl mx-auto text-center py-10">
       <h2 className="article-title">Article #{id}</h2>
       <p className="article-contents">
-        (Ici tu pourras afficher le contenu complet de ton article sur l’espace)
+        (blalbla le contenu de l’article ...)
       </p>
       <Link to="/blog" className="article-back-link">
         ← Retour au blog

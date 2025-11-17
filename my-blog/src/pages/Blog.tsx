@@ -13,32 +13,23 @@ export default function Blog() {
   const queryParams = new URLSearchParams(location.search);
   const searchQuery = queryParams.get("search")?.toLowerCase() || "";
   const [articles, setArticles] = useState<any[]>([]);
-// fethch les articles depuis une API ou une base de données
 
 
 useEffect(() => {
     fetch("http://localhost:3001/articles")
       .then((response) => response.json())
       .then((data) => setArticles(data))
-      .catch((error) => console.error("Erreur lors du chargement des articles :", error));  
-      
-
-
-      
+      .catch((error) => console.error("Erreur lors du chargement des articles :", error));        
 }, []);
-console.log(articles);
+
+
    const filteredArticles = articles.filter(
     (article) =>
       article.title.toLowerCase().includes(searchQuery) ||
       article.excerpt.toLowerCase().includes(searchQuery)
   );
  
-
-
-
-  // Filtre les articles selon le texte tapé
-
-
+// Filtre les articles selon le texte tapé
   return (
     <>
       <div className="search">
@@ -57,9 +48,3 @@ console.log(articles);
     </>
   );
 }
-
-
-
-// export default function Blog() {
-
-// }
