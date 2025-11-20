@@ -10,6 +10,9 @@ import SearchBar from "./components/SearchBar.tsx";
 import "./index.css";
 import "./App.css";
 import NotFound from "./components/NotFound.tsx";
+import AddArticles from "./pages/AddArticles.tsx";
+import UpdateArticle from "./components/UpdateArticle.tsx";
+import UpdateArticlePage from "./pages/UpdateArticlePage.tsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
@@ -22,6 +25,8 @@ root.render(
           <Route path="/" element={<App />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<Article />} /> 
+          <Route path="/addarticle" element={<AddArticles/>} />
+          <Route path="/updatearticle/:id" element={<UpdateArticlePage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/search" element={<SearchBar />} />
           <Route path="*" element={<NotFound/>}/>

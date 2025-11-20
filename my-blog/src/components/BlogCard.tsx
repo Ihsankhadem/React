@@ -14,7 +14,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-interface BlogCardProps {
+export interface BlogCardProps {
   id: number ;
   title: string;
   excerpt: string;
@@ -34,6 +34,12 @@ export default function BlogCard({ id, title, excerpt, image, liked = false }: B
         <Link to={`/blog/${id}`} className="blog-card-link">
           Lire l’article →
         </Link>
+
+          <Link to={`/updatearticle/${id}`} className="edit-btn">
+            Edit
+          </Link>
+
+
 
         <div className="blog-card-like">
           <button

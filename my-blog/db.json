@@ -1,64 +1,116 @@
 {
   "articles": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Le Soleil : le cœur du Système solaire",
       "excerpt": "Découvrez comment notre étoile nourrit la vie sur Terre et influence les planètes.",
-      "image": "https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=800&q=80",
+      "content": "Le Soleil est une étoile de type naine jaune âgée de 4,6 milliards d’années. Il représente plus de 99 % de la masse totale du Système solaire et fournit l’énergie indispensable au développement de la vie sur Terre. Par fusion nucléaire, il convertit l’hydrogène en hélium en libérant une quantité colossale de lumière et de chaleur. Ses variations, comme les éruptions solaires, influencent également notre climat, nos satellites et même les aurores boréales."
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "La Lune et ses mystères",
       "excerpt": "Crêtes, mers, éclipses : plongez dans les secrets du seul satellite naturel de la Terre.",
-      "image": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+      "content": "La Lune, formée il y a environ 4,5 milliards d’années, est le résultat probable d’une collision entre la Terre et un ancien corps céleste. Ses mers sombres, visibles depuis la Terre, sont en réalité d’immenses plaines de lave solidifiée. La Lune influence les marées, stabilise l’axe de rotation terrestre et permet l’observation régulière d’éclipses spectaculaires. Son exploration reste une priorité des programmes spatiaux modernes, notamment avec le programme Artemis."
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Les planètes géantes : Jupiter et Saturne",
       "excerpt": "Explorez les titans gazeux et leurs fascinants systèmes d’anneaux et de lunes.",
-      "image": "https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&w=1000&q=80"
+      "image": "https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&w=1000&q=80",
+      "content": "Jupiter et Saturne sont des géantes gazeuses composées principalement d’hydrogène et d’hélium. Jupiter, la plus massive des planètes, possède une célèbre tempête : la Grande Tache rouge. Saturne, quant à elle, est connue pour ses anneaux spectaculaires faits de glace et de poussière. Ces deux mondes abritent également des lunes fascinantes comme Europe, Titan ou Encelade, qui pourraient héberger des océans souterrains favorables à la vie."
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "Mars : la planète rouge",
       "excerpt": "Entre mythes et exploration, découvrez pourquoi Mars fascine tant les scientifiques.",
-      "image": "https://images.unsplash.com/photo-1454789548928-9efd52dc4031?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1454789548928-9efd52dc4031?auto=format&fit=crop&w=800&q=80",
+      "content": "Mars est surnommée la planète rouge en raison de la forte présence d’oxydes de fer à sa surface. Elle a longtemps été associée aux mythes d’une vie extraterrestre. Aujourd’hui, les sondes et les rovers ont révélé qu’elle possédait autrefois de l’eau liquide en grande quantité. L’objectif des futures missions humaines est de mieux comprendre son passé géologique et de déterminer si elle a pu abriter la vie."
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "Les comètes et les astéroïdes",
       "excerpt": "Ces voyageurs glacés ou rocheux détiennent les secrets de la naissance du Système solaire.",
-      "image": "https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=800&q=80",
+      "content": "Les comètes sont constituées de glace, de poussière et de roches, tandis que les astéroïdes sont majoritairement rocheux ou métalliques. Leur étude permet de comprendre la composition primitive du Système solaire, car ils sont restés pratiquement inchangés depuis des milliards d’années. Certaines missions, comme Rosetta ou OSIRIS-REx, ont permis de prélever des échantillons pour les analyser sur Terre."
     },
     {
-      "id": 6,
+      "id": "6",
       "title": "La Voie lactée et les galaxies voisines",
       "excerpt": "Partez à la découverte de notre galaxie et de ses milliards d’étoiles.",
-      "image": "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=800&q=80",
+      "content": "La Voie lactée est une galaxie spirale contenant environ 200 à 400 milliards d’étoiles. Elle s’étend sur plus de 100 000 années-lumière et abrite en son centre un trou noir supermassif nommé Sagittarius A*. Autour d’elle gravitent des galaxies satellites comme les Nuages de Magellan. Ensemble, elles forment le Groupe local, une petite portion de l’univers observable."
     },
     {
-      "id": 7,
-      "title": "Les trous noirs : les mystères de l’espace-temps",
+      "id": "7",
+      "title": "Les trous noirs : les mystères de l’espace-temps waouh",
       "excerpt": "Que se passe-t-il au-delà de l’horizon des événements ? Découvrez ces monstres cosmiques.",
-      "image": "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=800&q=80",
+      "content": "Les trous noirs sont des régions de l’espace où la gravité est si intense que rien ne peut s’en échapper, pas même la lumière. Ils se forment généralement après l’effondrement d’une étoile massive. L’horizon des événements marque la limite au-delà de laquelle l’information disparaît. Leur étude remet en question notre compréhension de la physique, notamment concernant la relativité générale et la mécanique quantique."
     },
     {
-      "id": 8,
+      "id": "8",
       "title": "L’exploration spatiale moderne",
       "excerpt": "Des missions Artemis à SpaceX, suivez les nouvelles conquêtes de l’humanité dans l’espace.",
-      "image": "https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=800&q=80"
+      "image": "https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=800&q=80",
+      "content": "L’exploration spatiale connaît une nouvelle ère grâce aux avancées technologiques et à la participation d’entreprises privées. Les missions Artemis visent à ramener l’humanité sur la Lune, tandis que SpaceX développe des fusées réutilisables et prépare des voyages vers Mars. Les télescopes spatiaux modernes, tels que James Webb, nous permettent également d’observer l’univers avec une précision inégalée."
     },
     {
-      "id": 9,
+      "id": "9",
       "title": "Les exoplanètes : mondes au-delà du Système solaire",
       "excerpt": "Des planètes lointaines tournent autour d’autres étoiles : certaines pourraient abriter la vie.",
-      "image": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1000&q=80"
+      "image": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1000&q=80",
+      "content": "Les exoplanètes sont des planètes situées en dehors de notre Système solaire. Depuis leur première détection dans les années 1990, les astronomes en ont découvert plusieurs milliers grâce à des méthodes comme le transit ou la vitesse radiale. Certaines se trouvent dans la zone habitable, là où l’eau liquide pourrait exister. Leur étude ouvre de nouvelles perspectives dans la recherche de vie extraterrestre."
     },
     {
-      "id": 10,
+      "id": "10",
       "title": "Le Big Bang et la naissance de l’univers",
       "excerpt": "Remontez aux origines du temps et découvrez comment tout a commencé il y a 13,8 milliards d’années.",
-      "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80"
+      "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80",
+      "content": "Le Big Bang désigne l’événement qui marque le début de l’expansion de l’univers il y a environ 13,8 milliards d’années. À ses débuts, l’univers était extrêmement dense et chaud. En se refroidissant, il permet la formation des particules, des atomes, puis des galaxies. Les preuves du Big Bang incluent le fond diffus cosmologique et l’expansion observée de l’univers. Ce modèle reste au cœur de la cosmologie moderne."
+    },
+    {
+      "id": "a69f",
+      "title": "une commette",
+      "excerpt": "la vie est rose",
+      "image": "https://sciencepost.fr/wp-content/uploads/2025/10/iStock-1383526495-1536x1152.jpg.webp"
+    },
+    {
+      "id": "9c11",
+      "title": "une commette",
+      "excerpt": "la vie est rose",
+      "image": "https://sciencepost.fr/wp-content/uploads/2025/10/iStock-1383526495-1536x1152.jpg.webp"
+    },
+    {
+      "id": "7fe8",
+      "title": "une commette",
+      "excerpt": "la vie est rose",
+      "image": "https://sciencepost.fr/wp-content/uploads/2025/10/iStock-1383526495-1536x1152.jpg.webp"
+    },
+    {
+      "id": "42d2",
+      "title": "Capitaine Flam",
+      "excerpt": "A des années et des années Lumière de la Terre",
+      "image": "https://imgs.search.brave.com/L-RjO-1dYfD8T0UawM8jbGS1soxH3jVLmHsMKbgjqZ4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hbGJh/dG9yLmNvbS5mci9p/bWcvZGVzc2lucy1h/bmltZXMvZGVzc2lu/cy1hbmltZXMtY2Fw/dGFpbmZsYW0uanBn"
+    },
+    {
+      "id": "fbaa",
+      "title": "l'histoire de la vie ",
+      "excerpt": "blablabla",
+      "image": "https://imgs.search.brave.com/_8N45BHrpT6A0SLaXYscnDDS-pwJeGafMoqFkMM-YsQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cGhvdG9zLWdyYXR1/aXRlL3BsYW5ldGUt/dGVycmUtZW50b3Vy/ZWUtbmF0dXJlLXZl/Z2V0YXRpb25fMjMt/MjE1MTU4Nzg5OS5q/cGc_c2VtdD1haXNf/aW5jb21pbmcmdz03/NDAmcT04MA"
+    },
+    {
+      "id": "821d",
+      "title": "il était une fois l'homme",
+      "excerpt": "l'infini",
+      "image": "https://imgs.search.brave.com/EuqWZ4Ooq77mE7MHRr0vxXgrfh2AVYb15qLCeuGBFdo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMjE4/NDYzODE4OS9mci9w/aG90by92dWUtZHUt/bGV2ZXItZHUtc29s/ZWlsLWRlLWxhLXBs/YW4lQzMlQTh0ZS10/ZXJyZS1kZXB1aXMt/bGVzcGFjZS53ZWJw/P2E9MSZiPTEmcz02/MTJ4NjEyJnc9MCZr/PTIwJmM9VFk5SHJI/RlpRX1lZVEtwRmgt/OGRDanEtSzVkYkND/bWtwUG1xTFJBaEVK/cz0"
+    },
+    {
+      "id": "86c7",
+      "title": "Lune",
+      "excerpt": "demi_lune",
+      "image": "https://imgs.search.brave.com/YPxVF8g6gGyPtNTNS0rRjKqz0SKbJXD_xV_A4_0U6oA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cGhvdG9zLWdyYXR1/aXRlL2ZvbmQtaGFs/bG93ZWVuLTNkLWFy/YnJlLXNlLWRlY291/cGFudC1sdW5lXzEw/NDgtODc5NC5qcGc_/c2VtdD1haXNfaHli/cmlkJnc9NzQwJnE9/ODA"
     }
   ]
 }

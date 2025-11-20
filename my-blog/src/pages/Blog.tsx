@@ -4,7 +4,8 @@ import BlogCard from "../components/BlogCard.tsx";
 import "../App.css";
 import SearchBar from "../components/SearchBar.tsx";
 import { useLocation } from "react-router-dom";
-import { use, useEffect, useState } from "react";
+import {useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 
 export default function Blog() {
@@ -36,7 +37,12 @@ useEffect(() => {
         <SearchBar />
       </div>
 
-      <section className="blog-container">
+      <Link to="/addarticle" className="add-article-btn">
+          Ajouter un article
+      </Link>
+
+
+      <section className="blog-container" >
         {filteredArticles.length > 0 ? (
           filteredArticles.map((article) => (
             <BlogCard key={article.id} {...article} />

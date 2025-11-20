@@ -9,12 +9,11 @@ function FormContact () {
 
    function RegisterFormContact(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault(); // Empêche le rechargement de la page par la nagigater lors de la soumission du formulaire
-    console.log({name, email, message});
    }
   
   
   return (
-    <form onSubmit={RegisterFormContact}>
+    <form onSubmit={RegisterFormContact}  className="contact-form">
     
       <label>
         Nom :

@@ -1,4 +1,29 @@
 /* ========================================
+   Variables globales
+   ======================================== */
+:root {
+  /* Couleurs principales */
+  --color-white: #ffffff;
+  --color-light: #e0e0e0;
+  --color-dark: #111;
+  --color-blue: #00bfff;
+  --color-blue-dark: #0072ff;
+  --color-blue-light: #66d9ff;
+  --color-header-bg: #0a1939f3;
+
+  /* Soleil */
+  --sun-text: #4a2b00;
+
+  /* Blog */
+  --like-primary: #ff4d6d;
+  --like-secondary: #ff6fbf;
+
+  /* Home */
+  --btn-green: #0c7f23;
+  --btn-green-hover: #00cc29;
+}
+
+/* ========================================
    Global & Body
    ======================================== */
 body {
@@ -6,10 +31,6 @@ body {
   font-family: 'Inter', sans-serif;
   background-image: url("./assets/espace.jpg");
   background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* fond fixe */
-  height: 100vh;
 }
 
 main {
@@ -24,8 +45,8 @@ main {
    Header
    ======================================== */
 .header {
-  background-color: #0a1939f3;
-  color: white;
+  background-color: var(--color-header-bg);
+  color: var(--color-white);
   padding: 20px 50px;
   display: flex;
   justify-content: space-between;
@@ -59,7 +80,7 @@ main {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 3px;
-  background: linear-gradient(90deg, #ffffff, #b0c4de, #87cefa);
+  background: linear-gradient(90deg, var(--color-white), #b0c4de, #87cefa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 4px rgba(255, 255, 255, 0.4),
@@ -73,7 +94,7 @@ main {
 }
 
 .header nav a {
-  color: #ffffff;
+  color: var(--color-white);
   text-decoration: none;
   font-size: 1.1rem;
   font-weight: 500;
@@ -83,7 +104,7 @@ main {
 }
 
 .header nav a:hover {
-  color: #00bfff;
+  color: var(--color-blue);
   background-color: rgba(0, 191, 255, 0.1);
   box-shadow: 0 0 6px rgba(0, 191, 255, 0.5);
 }
@@ -93,16 +114,15 @@ main {
    ======================================== */
 .contact-title {
   text-align: center;
-  color: #e0e0e0;
+  color: var(--color-light);
   font-size: 2rem;
   margin-bottom: 1rem;
-  text-shadow: 0 0 2px #ffffff,
-               0 0 4px #e0e0e0,
+  text-shadow: 0 0 2px var(--color-white),
+               0 0 4px var(--color-light),
                0 0 6px #c0c0c0;
 }
 
-/* Formulaire */
-form {
+.contact-form {
   max-width: 500px;
   margin: 2rem auto;
   background: rgba(10, 25, 57, 0.85);
@@ -118,7 +138,7 @@ form {
 form label {
   display: flex;
   flex-direction: column;
-  color: #e0e0e0;
+  color: var(--color-light);
   font-weight: 500;
   font-size: 1rem;
   letter-spacing: 0.5px;
@@ -131,7 +151,7 @@ form textarea {
   border-radius: 6px;
   border: 1px solid rgba(0, 191, 255, 0.3);
   background-color: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
+  color: var(--color-white);
   font-size: 1rem;
   transition: all 0.3s ease;
 }
@@ -139,7 +159,7 @@ form textarea {
 form input:focus,
 form textarea:focus {
   outline: none;
-  border-color: #00bfff;
+  border-color: var(--color-blue);
   box-shadow: 0 0 8px rgba(0, 191, 255, 0.4);
   background-color: rgba(255, 255, 255, 0.12);
 }
@@ -150,7 +170,7 @@ form textarea {
 }
 
 form button {
-  background: linear-gradient(90deg, #0072ff, #00c6ff);
+  background: linear-gradient(90deg, var(--color-blue-dark), #00c6ff);
   color: white;
   border: none;
   padding: 0.8rem 1rem;
@@ -164,76 +184,74 @@ form button {
 }
 
 form button:hover {
-  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  background: linear-gradient(90deg, #00c6ff, var(--color-blue-dark));
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0, 191, 255, 0.4);
 }
 
-form button:active {
-  transform: translateY(0);
-}
-
-/* =============================
-   HOME PAGE – Agencement moderne
-   ============================= */
+/* ========================================
+   Home Page
+   ======================================== */
 .home-page {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;        
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
   padding: 3rem 2rem;
-  color: #fff;
-  text-align: center;
+  color: var(--color-white);
 }
 
-/* HERO (titre + intro + bouton) */
+
 .home-hero {
-  max-width: 800px;
-  margin-bottom: 3rem;
+  width: 300px;
   padding: 2rem;
   backdrop-filter: blur(10px);
   border-radius: 20px;
   box-shadow: 0 0 15px rgba(14, 74, 130, 0.797);
+  display: flex;
+  flex-direction: column;
 }
 
-/* Bouton principal */
 .home-link {
-  display: inline-block;
+  align-self: flex-end;
+  margin-bottom: 1.5rem;     
   padding: 0.9rem 1.6rem;
   border-radius: 12px;
   font-weight: bold;
   text-decoration: none;
-  color: #000; /* texte noir pour contraste */
-  background-color: #0c7f23; /* vert néon foncé */
+  color: #000;
+  background-color: var(--btn-green);
   box-shadow: 0 0 8px #00ff33, 0 0 20px #00ff33 inset;
   transition: all 0.3s ease;
 }
 
 
 .home-link:hover {
-  background-color: #00cc29; /* vert légèrement plus foncé au hover */
+  background-color: var(--btn-green-hover);
   transform: scale(1.05);
   box-shadow: 0 0 15px #00ff33, 0 0 25px #00ff33 inset;
 }
 
-/* DEUX COLONNES POUR LES ARTICLES */
 .home-content {
   display: flex;
-  flex-wrap: wrap;
-  gap: 3rem;
-  justify-content: center;
-  width: 100%;
-  max-width: 1000px;
+  flex-direction: column;   
+  gap: 1.5rem;
+  flex: 1;
 }
 
+/* Cartes de taille égale */
 .home-article-card {
-  flex: 1 1 280px;
   background: rgba(255, 255, 255, 0.1);
   padding: 1.5rem;
   border-radius: 18px;
   backdrop-filter: blur(10px);
   box-shadow: 0 0 10px rgba(0, 255, 51, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;              
 }
 
 .home-article-card:hover {
@@ -252,16 +270,88 @@ form button:active {
   display: inline-block;
   padding: 0.5rem 1rem;
   border-radius: 12px;
-  background: #0d2f49; 
-  color: #ffffff; 
+  color: var(--color-white);
   font-weight: 600;
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
 .home-article-link:hover {
-  background: #d3d313; 
+  background: #d3d313;
   transform: scale(1.05);
+}
+
+/* ========================================
+   SUN – Bloc question
+   ======================================== */
+.sun-question-block {
+  width: 320px;
+  height: 320px;
+  margin: 2rem 0 2rem 2rem;
+  background: radial-gradient(circle at 30% 25%, #fff6d6 0%, #ffd67a 40%, #ffb347 100%);
+  border-radius: 50%;
+  box-shadow: 0 10px 40px rgba(255,160,40,0.25),
+              inset 0 -15px 35px rgba(255,220,120,0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+}
+
+.sun-question {
+  max-width: 85%;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--sun-text);
+  background: rgba(255,255,255,0.2);
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(255,180,60,0.2);
+}
+
+.sun-form {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.sun-input {
+  width: 100%;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(77, 48, 0, 0.2);
+  background: transparent;
+  color: var(--sun-text);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.sun-input:focus {
+  box-shadow: 0 6px 18px rgba(255,180,60,0.25);
+  transform: translateY(-1px);
+}
+
+.button-envoie {
+  width: fit-content;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(77,48,0,0.2);
+  background: transparent;
+  color: var(--sun-text);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.button-envoie:hover {
+  background: rgba(255,230,120,0.3);
+  box-shadow: 0 6px 18px rgba(251, 237, 36, 0.623);
+  transform: translateY(-1px);
 }
 
 /* ========================================
@@ -275,7 +365,8 @@ form button:active {
 }
 
 .blog-card {
-  background: #111;
+  position:relative;
+  background: var(--color-dark);
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -284,10 +375,6 @@ form button:active {
 .blog-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 10px rgba(0, 191, 255, 0.3);
-}
-
-.blog-card:active {
-  transform: scale(1);
 }
 
 .blog-card-image {
@@ -313,14 +400,13 @@ form button:active {
 }
 
 .blog-card-link {
-  color: #00bfff;
+  color: var(--color-blue);
   text-decoration: none;
 }
 
 .blog-card-link:hover {
-  color: #66d9ff;
+  color: var(--color-blue-light);
 }
-
 
 .blog-card-like {
   margin-top: 1rem;
@@ -330,89 +416,166 @@ form button:active {
   gap: 0.5rem;
 }
 
-/* Bouton like */
 .like-button {
   border: none;
   cursor: pointer;
   font-size: 1.2rem;
-  color: #ff4d6d;
-  background: linear-gradient(90deg, #ff4d6d, #ff6fbf);
+  color: var(--like-primary);
+  background: linear-gradient(90deg, var(--like-primary), var(--like-secondary));
   padding: 0.4rem 0.8rem;
   border-radius: 8px;
-  text-shadow: 0 0 6px #ff4d6d, 0 0 12px #ff6fbf;
-  box-shadow: 0 0 8px #ff4d6d, 0 0 20px #ff6fbf inset;
+  text-shadow: 0 0 6px var(--like-primary), 0 0 12px var(--like-secondary);
+  box-shadow: 0 0 8px var(--like-primary), 0 0 20px var(--like-secondary) inset;
   transition: all 0.2s ease;
 }
 
 .like-button:hover {
   transform: scale(1.2);
-  text-shadow: 0 0 12px #ff4d6d, 0 0 24px #ff6fbf;
-  box-shadow: 0 0 12px #ff4d6d, 0 0 25px #ff6fbf inset;
+  text-shadow: 0 0 12px var(--like-primary), 0 0 24px var(--like-secondary);
+  box-shadow: 0 0 12px var(--like-primary), 0 0 25px var(--like-secondary) inset;
 }
 
-.like-button:focus {
-  outline: none;
-}
-
-/* Optionnel : compteur de likes */
 .blog-card-like-count {
   font-size: 1rem;
   color: #e8f9ff;
   text-shadow: 0 0 4px #00eaff;
 }
 
+
+
+/* =======================================
+   Bouton "Ajouter un article"
+   ======================================= */
+.add-article-btn {
+  display: block;
+  width: fit-content;
+  margin: 1rem auto 2rem auto;  /* bouton plus haut */
+  padding: 0.8rem 2.2rem;
+
+  background: linear-gradient(135deg, #0aff9d 0%, #00c2ff 100%);
+  color: #000;
+  font-weight: 800;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+
+  border: 2px solid rgba(255,255,255,0.2);
+
+  box-shadow:
+    0 0 10px rgba(0, 240, 255, 0.5),
+    0 0 25px rgba(0, 200, 255, 0.3),
+    inset 0 0 8px rgba(255, 255, 255, 0.2);
+
+  transform: perspective(500px) translateZ(0);
+  transition: transform 0.25s ease, box-shadow 0.3s ease;
+}
+
+.add-article-btn:hover {
+  transform: perspective(500px) translateZ(15px) scale(1.07);
+  box-shadow:
+    0 0 20px rgba(0, 240, 255, 0.8),
+    0 0 40px rgba(0, 200, 255, 0.6),
+    inset 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+
+/* ============================
+   Bouton Edit 
+   ============================ */
+
+.edit-btn {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+
+  background: linear-gradient(135deg, #1a1a1a, #333);
+  color: #00eaff;
+  border: 1px solid #00eaff;
+
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-radius: 10px;
+
+  box-shadow:
+    0 0 10px rgba(0, 234, 255, 0.3),
+    inset 0 0 10px rgba(0, 234, 255, 0.2);
+}
+
+.edit-btn:hover {
+  color: #00eaff;     
+  background: #1a1a1a; 
+  box-shadow:
+    0 0 10px rgba(0, 234, 255, 0.3),
+    inset 0 0 10px rgba(0, 234, 255, 0.2); 
+  transform: translateX(-50%); 
+}
+
+
+
+
+
+/* ========================================
+   Search bar 
+   ======================================== */
 .search-bar {
   width: 100%;
-  max-width: 400px;
+  max-width: 700px;
   margin: 2rem auto;
   display: flex;
+  border-radius: 12px;
+  border: 2px solid #333;
+  overflow: hidden;
+  background-color: var(--color-white);
 }
 
 .search-input {
   flex: 1;
-  padding: 0.8rem 1rem;
-  border: 2px solid #00bfff;
-  border-radius: 8px 0 0 8px;
-  font-size: 1rem;
+  padding: 1rem 1.2rem;
+  border: none;
+  font-size: 1.1rem;
+  color: #333;
+  background-color: transparent;
   outline: none;
 }
 
 .search-button {
-  padding: 0.8rem 1.2rem;
-  border: 2px solid #00bfff;
-  border-left: none;
-  border-radius: 0 8px 8px 0;
-  background-color: #00bfff;
-  color: white;
-  font-size: 1rem;
+  padding: 1rem 1.5rem;
+  border: none;
+  background-color: #333;
+  color: var(--color-white);
+  font-size: 1.1rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .search-button:hover {
-  background-color: #0099e6;
+  background-color: #555;
+  transform: translateY(-1px);
 }
 
-
+/* ========================================
+   Article
+   ======================================== */
 .article-title {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
   color: #00eaff;
   text-shadow: 0 0 10px #00eaff;
-} 
-
-.article-content {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #e0e0e0;
-  margin-bottom: 2rem;
 }
 
+.article-content,
 .article-contents {
   font-size: 1.1rem;
   line-height: 1.8;
-  color: #e0e0e0;
+  color: var(--color-light);
   margin-bottom: 2rem;
 }
 
@@ -420,7 +583,7 @@ form button:active {
   display: inline-block;
   padding: 0.8rem 1.5rem;
   background-color: rgba(0, 191, 255, 0.3);
-  color: white;
+  color: var(--color-white);
   text-decoration: none;
   border-radius: 8px;
   font-weight: bold;
@@ -432,21 +595,3 @@ form button:active {
   background-color: rgba(0, 191, 255, 0.5);
   transform: translateY(-3px);
 }
-/* .home-article-link {
-  background-color: #949494f7;
-  padding: 0.9rem 1.6rem;
-  border-radius: 12px;
-  color: white;
-}
-.home-article-link:hover {
-  background-color: #828282;
-} */
-
-
-
-
-
-
-
-
-
