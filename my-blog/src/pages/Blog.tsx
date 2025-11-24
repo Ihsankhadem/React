@@ -31,26 +31,29 @@ useEffect(() => {
   );
  
 // Filtre les articles selon le texte tapé
-  return (
-    <>
-      <div className="search">
+return (
+  <>
+    <div className="align-search-add">
+
+      <Link to="/addarticle" className="add-article-btn">
+        Ajouter un article
+      </Link>
+
+      <div className="search-wrapper">
         <SearchBar />
       </div>
 
-      <Link to="/addarticle" className="add-article-btn">
-          Ajouter un article
-      </Link>
+    </div>
 
-
-      <section className="blog-container" >
-        {filteredArticles.length > 0 ? (
-          filteredArticles.map((article) => (
-            <BlogCard key={article.id} {...article} />
-          ))
-        ) : (
-          <p className="no-results">Aucun article ne correspond à ta recherche </p>
-        )}
-      </section>
-    </>
-  );
+    <section className="blog-container">
+      {filteredArticles.length > 0 ? (
+        filteredArticles.map((article) => (
+          <BlogCard key={article.id} {...article} />
+        ))
+      ) : (
+        <p className="no-results">Aucun article ne correspond à ta recherche</p>
+      )}
+    </section>
+  </>
+);
 }

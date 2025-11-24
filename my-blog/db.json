@@ -15,25 +15,11 @@
       "content": "La Lune, formée il y a environ 4,5 milliards d’années, est le résultat probable d’une collision entre la Terre et un ancien corps céleste. Ses mers sombres, visibles depuis la Terre, sont en réalité d’immenses plaines de lave solidifiée. La Lune influence les marées, stabilise l’axe de rotation terrestre et permet l’observation régulière d’éclipses spectaculaires. Son exploration reste une priorité des programmes spatiaux modernes, notamment avec le programme Artemis."
     },
     {
-      "id": "3",
-      "title": "Les planètes géantes : Jupiter et Saturne",
-      "excerpt": "Explorez les titans gazeux et leurs fascinants systèmes d’anneaux et de lunes.",
-      "image": "https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&w=1000&q=80",
-      "content": "Jupiter et Saturne sont des géantes gazeuses composées principalement d’hydrogène et d’hélium. Jupiter, la plus massive des planètes, possède une célèbre tempête : la Grande Tache rouge. Saturne, quant à elle, est connue pour ses anneaux spectaculaires faits de glace et de poussière. Ces deux mondes abritent également des lunes fascinantes comme Europe, Titan ou Encelade, qui pourraient héberger des océans souterrains favorables à la vie."
-    },
-    {
       "id": "4",
       "title": "Mars : la planète rouge",
       "excerpt": "Entre mythes et exploration, découvrez pourquoi Mars fascine tant les scientifiques.",
       "image": "https://images.unsplash.com/photo-1454789548928-9efd52dc4031?auto=format&fit=crop&w=800&q=80",
       "content": "Mars est surnommée la planète rouge en raison de la forte présence d’oxydes de fer à sa surface. Elle a longtemps été associée aux mythes d’une vie extraterrestre. Aujourd’hui, les sondes et les rovers ont révélé qu’elle possédait autrefois de l’eau liquide en grande quantité. L’objectif des futures missions humaines est de mieux comprendre son passé géologique et de déterminer si elle a pu abriter la vie."
-    },
-    {
-      "id": "5",
-      "title": "Les comètes et les astéroïdes",
-      "excerpt": "Ces voyageurs glacés ou rocheux détiennent les secrets de la naissance du Système solaire.",
-      "image": "https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=800&q=80",
-      "content": "Les comètes sont constituées de glace, de poussière et de roches, tandis que les astéroïdes sont majoritairement rocheux ou métalliques. Leur étude permet de comprendre la composition primitive du Système solaire, car ils sont restés pratiquement inchangés depuis des milliards d’années. Certaines missions, comme Rosetta ou OSIRIS-REx, ont permis de prélever des échantillons pour les analyser sur Terre."
     },
     {
       "id": "6",
@@ -72,18 +58,6 @@
     },
     {
       "id": "a69f",
-      "title": "une commette",
-      "excerpt": "la vie est rose",
-      "image": "https://sciencepost.fr/wp-content/uploads/2025/10/iStock-1383526495-1536x1152.jpg.webp"
-    },
-    {
-      "id": "9c11",
-      "title": "une commette",
-      "excerpt": "la vie est rose",
-      "image": "https://sciencepost.fr/wp-content/uploads/2025/10/iStock-1383526495-1536x1152.jpg.webp"
-    },
-    {
-      "id": "7fe8",
       "title": "une commette",
       "excerpt": "la vie est rose",
       "image": "https://sciencepost.fr/wp-content/uploads/2025/10/iStock-1383526495-1536x1152.jpg.webp"

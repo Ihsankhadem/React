@@ -50,6 +50,8 @@ export default function UpdateArticle() {
 
   return (
     <>
+
+
       <form onSubmit={handleSubmit} className="contact-form">
         <input
           type="text"
@@ -117,8 +119,27 @@ export default function UpdateArticle() {
         )}
 
         <button type="submit" disabled={isLoading}>
-          {isLoading ? "Envoi..." : "Ajouter"}
+          {isLoading ? "Envoi..." : "Modifier"}
         </button>
+
+
+                  <button
+            className="delete-btn"
+            onClick={() => {
+              if (!window.confirm("Supprimer cet article ?")) return;
+
+              fetch(`http://localhost:3001/articles/${id}`, {
+                method: "DELETE",
+              })
+                .then((res) => {
+                  if (!res.ok) throw new Error("Erreur lors de la suppression");
+                  navigate("/blog");
+                })
+                .catch(() => alert("Impossible de supprimer l’article"));
+            }}
+          >
+            Erase
+          </button>
       </form>
     </>
   );

@@ -3,6 +3,7 @@
 import { FC, ReactHTMLElement, useState } from "react";
 import { Link } from "react-router-dom";
 
+
 type Article = {
   titre: string;
   lien: string;
@@ -50,6 +51,8 @@ const Home: FC = () => {
   const [comments, setComments] = useState<string>("");
   const [randomQuestions, setRandomQuestions] = useState<string>("");
 
+  
+
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const choice = questions[Math.floor(Math.random() * questions.length)];
@@ -58,26 +61,41 @@ const Home: FC = () => {
 
   return (
     <>
-      <section className="sun-question-block">
-        <div className="sun-question">{randomQuestions}</div>
+    
+<div className="sun-video-container">
+  <section className="sun-question-block">
+    <div className="sun-question">{randomQuestions}</div>
+    <form onSubmit={handleSubmit} className="sun-form">
+      <input
+        type="text"
+        value={comments}
+        onChange={(e) => setComments(e.target.value)}
+        placeholder="Et toi, qu'en penses-tu ?"
+        className="sun-input"
+      />
+      <button className="button-envoie">Envoie</button>
+    </form>
+  </section>
 
-        <form onSubmit={handleSubmit} className="sun-form">
-          <input
-            type="text"
-            value={comments}
-            onChange={(e) => setComments(e.target.value)}
-            placeholder="Et toi, qu'en penses-tu ?"
-            className="sun-input"
-          />
-          <button className="button-envoie">Envoie</button>
-        </form>
-      </section>
+  <iframe
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/G6A72ufn3l4?autoplay=1&mute=1"
+    title="YouTube video player"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerPolicy="strict-origin-when-cross-origin"
+    allowFullScreen
+  ></iframe>
+</div>
+
 
       <div className="home-page">
         <section className="home-content">
           <Link to="/blog" className="home-link">
             Explorer le blog
           </Link>
+
+          <h1 className="popular-articles-title">Articles Populaires :</h1>
 
           <div className="home-articles-grid">
             {articles.map((article, index) => (
