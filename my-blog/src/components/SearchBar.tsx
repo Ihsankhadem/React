@@ -32,9 +32,9 @@ export default function SearchBar() {
         autoComplete="off"
       />
 
-      <button type="submit" className="search-button">
+      {/* <button type="submit" className="search-button">
         Rechercher
-      </button>
+      </button> */}
     </form>
   );
 }

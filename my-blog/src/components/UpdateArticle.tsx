@@ -99,6 +99,10 @@ export default function UpdateArticle() {
   return (
     <>
       <form onSubmit={handleSubmit} className="contact-form">
+
+<h2 id="form-title">Modifier l'article</h2>
+
+  <label htmlFor="title" className="">Titre de l’article :</label>
         <input
           type="text"
           name="title"
@@ -107,7 +111,7 @@ export default function UpdateArticle() {
           placeholder="Titre"
           required
         />
-
+  <label htmlFor="excerpt">Résumé :</label>
         <textarea
           name="excerpt"
           value={editArticle.excerpt}
@@ -115,7 +119,7 @@ export default function UpdateArticle() {
           placeholder="Résumé"
           required
         />
-
+  <label htmlFor="image">Choisir votre image :</label>
         <input
           type="text"
           name="image"
@@ -124,7 +128,7 @@ export default function UpdateArticle() {
           placeholder="URL de l'image"
           required
         />
-
+  <label htmlFor="content">Contenu de l’article :</label>
         <textarea
           name="content"
           value={editArticle.content}

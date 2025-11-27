@@ -24,6 +24,7 @@ export default function FormArticles() {
     }
   }, [error, success]);
   
+  
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
@@ -43,6 +44,8 @@ export default function FormArticles() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+  // SECURITY: prevent CSRF if backend accepts it
+        "X-Requested-With": "XMLHttpRequest"
       },
       body: JSON.stringify(newArticles),
     })
@@ -70,7 +73,7 @@ export default function FormArticles() {
 
     return (
       <>
-          <form onSubmit={handleSubmit} aria-labelledby="form-title" className="contact-form">
+          <form onSubmit={handleSubmit} aria-labelledby="form-title" className="contact-form" autoComplete="off">
              <h2 id="form-title">Ajouter un nouvel article</h2>
 
         <label htmlFor="title" className="">Titre de l’article :</label>
@@ -96,13 +99,14 @@ export default function FormArticles() {
             type="text"
             name="image"
             value={newArticles.image}
+            inputMode="url"
             onChange={handleChange}
-            placeholder="URL de l'image"
+            placeholder="https://exemple.com/image.webp"
             required
           />
         <label htmlFor="content">Contenu de l’article :</label>
           <textarea
-            name="excerpt"
+            name="content"
             value={newArticles.content}
             onChange={handleChange}
             placeholder="Contenue de l'article"
