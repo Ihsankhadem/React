@@ -1,5 +1,5 @@
 import "../App.css";
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function DeleteArticle() {
@@ -7,10 +7,27 @@ export default function DeleteArticle() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
-
+  const messageRef = useRef<HTMLParagraphElement | null>(null);
   const navigate = useNavigate();
 
+  // Auto-focus sur le message d'erreur ou succès
+  useEffect(() => {
+    if (messageRef.current) {
+      messageRef.current.focus();
+    }
+  }, [error, success]);
+
   function handleDelete() {
+    if (!id) {
+      setError("Identifiant d’article manquant.");
+      return;
+    }
+
+    const confirmDelete = window.confirm(
+      "Voulez-vous vraiment supprimer cet article ? Cette action est définitive."
+    );
+    if (!confirmDelete) return;
+
     setIsLoading(true);
     setError(null);
     setSuccess(null);
@@ -19,14 +36,11 @@ export default function DeleteArticle() {
       method: "DELETE",
     })
       .then((response) => {
-        if (!response.ok) {
-          throw new Error("Impossible de supprimer l’article");
-        }
-
-        setSuccess("Article supprimé !");
+        if (!response.ok) throw new Error("Impossible de supprimer l’article");
+        setSuccess("✅ Article supprimé !");
         setTimeout(() => navigate("/blog"), 1500);
       })
-      .catch((err) => {
+      .catch((err: any) => {
         console.error(err);
         setError(err.message || "Erreur lors de la suppression");
       })
@@ -37,6 +51,9 @@ export default function DeleteArticle() {
     <>
       {error && (
         <p
+          ref={messageRef}
+          role="alert"
+          tabIndex={-1}
           style={{
             backgroundColor: "#f8d7da",
             color: "#721c24",
@@ -54,6 +71,9 @@ export default function DeleteArticle() {
 
       {success && (
         <p
+          ref={messageRef}
+          role="alert"
+          tabIndex={-1}
           style={{
             backgroundColor: "#d4edda",
             color: "#155724",
@@ -69,7 +89,10 @@ export default function DeleteArticle() {
         </p>
       )}
 
-      <button onClick={handleDelete} disabled={isLoading}>
+      <button
+        onClick={handleDelete}
+        disabled={isLoading}
+      >
         {isLoading ? "Suppression..." : "Supprimer"}
       </button>
     </>

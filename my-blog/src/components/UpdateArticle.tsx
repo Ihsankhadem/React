@@ -1,30 +1,54 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 export default function UpdateArticle() {
   const { id } = useParams();
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+
   const [editArticle, setEditArticle] = useState({
     title: "",
     excerpt: "",
     image: "",
+    content: "",
   });
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
-  // --- Charger l’article -------------------------------------------------
+  const messageRef = useRef<HTMLParagraphElement | null>(null);
+
+  // Focus automatique sur message succès/erreur
   useEffect(() => {
+    if (messageRef.current) {
+      messageRef.current.focus();
+    }
+  }, [error, success]);
+
+  // Charger l’article
+  useEffect(() => {
+    if (!id) {
+      setError("Aucun identifiant fourni.");
+      return;
+    }
+
     fetch(`http://localhost:3001/articles/${id}`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error("Article introuvable");
+        return res.json();
+      })
       .then((data) => setEditArticle(data))
       .catch(() => setError("Impossible de charger l'article"));
   }, [id]);
 
-
+  // Mise à jour
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (!id) {
+      setError("Identifiant article manquant");
+      return;
+    }
+
     setIsLoading(true);
     setError(null);
     setSuccess(null);
@@ -39,25 +63,47 @@ export default function UpdateArticle() {
         return res.json();
       })
       .then(() => {
-        setSuccess("Article mis à jour avec succès !");
+        setSuccess("✅ Article mis à jour avec succès !");
         setTimeout(() => navigate("/blog"), 1500);
       })
-      .catch(() => setError("Une erreur est survenue"))
+      .catch((err: any) => setError(err.message || "Une erreur est survenue"))
       .finally(() => setIsLoading(false));
-    
   }
 
+  // Suppression de l'article
+  function handleDelete() {
+    if (!id) {
+      setError("Identifiant article manquant");
+      return;
+    }
+
+    const confirmDelete = window.confirm(
+      "Voulez-vous vraiment supprimer cet article ? Cette action est définitive."
+    );
+    if (!confirmDelete) return;
+
+    setIsLoading(true);
+    setError(null);
+    setSuccess(null);
+
+    fetch(`http://localhost:3001/articles/${id}`, { method: "DELETE" })
+      .then((res) => {
+        if (!res.ok) throw new Error("Impossible de supprimer l’article");
+        setSuccess("Article supprimé !");
+        setTimeout(() => navigate("/blog"), 1500);
+      })
+      .catch((err: any) => setError(err.message || "Erreur lors de la suppression"))
+      .finally(() => setIsLoading(false));
+  }
 
   return (
     <>
-
-
       <form onSubmit={handleSubmit} className="contact-form">
         <input
           type="text"
           name="title"
           value={editArticle.title}
-            onChange={(e) => setEditArticle({ ...editArticle, title: e.target.value })}
+          onChange={(e) => setEditArticle({ ...editArticle, title: e.target.value })}
           placeholder="Titre"
           required
         />
@@ -65,9 +111,7 @@ export default function UpdateArticle() {
         <textarea
           name="excerpt"
           value={editArticle.excerpt}
-          onChange={(e) =>
-            setEditArticle({ ...editArticle, excerpt: e.target.value })
-          }
+          onChange={(e) => setEditArticle({ ...editArticle, excerpt: e.target.value })}
           placeholder="Résumé"
           required
         />
@@ -76,16 +120,25 @@ export default function UpdateArticle() {
           type="text"
           name="image"
           value={editArticle.image}
-          onChange={(e) =>
-            setEditArticle({ ...editArticle, image: e.target.value })
-          }
+          onChange={(e) => setEditArticle({ ...editArticle, image: e.target.value })}
           placeholder="URL de l'image"
+          required
+        />
+
+        <textarea
+          name="content"
+          value={editArticle.content}
+          onChange={(e) => setEditArticle({ ...editArticle, content: e.target.value })}
+          placeholder="Contenu"
           required
         />
 
         {/* Messages d'erreur et de succès */}
         {error && (
           <p
+            ref={messageRef}
+            role="alert"
+            tabIndex={-1}
             style={{
               backgroundColor: "#f8d7da",
               color: "#721c24",
@@ -103,6 +156,9 @@ export default function UpdateArticle() {
 
         {success && (
           <p
+            ref={messageRef}
+            role="alert"
+            tabIndex={-1}
             style={{
               backgroundColor: "#d4edda",
               color: "#155724",
@@ -122,24 +178,14 @@ export default function UpdateArticle() {
           {isLoading ? "Envoi..." : "Modifier"}
         </button>
 
-
-                  <button
-            className="delete-btn"
-            onClick={() => {
-              if (!window.confirm("Supprimer cet article ?")) return;
-
-              fetch(`http://localhost:3001/articles/${id}`, {
-                method: "DELETE",
-              })
-                .then((res) => {
-                  if (!res.ok) throw new Error("Erreur lors de la suppression");
-                  navigate("/blog");
-                })
-                .catch(() => alert("Impossible de supprimer l’article"));
-            }}
-          >
-            Erase
-          </button>
+        <button
+          type="button"
+          onClick={handleDelete}
+          disabled={isLoading}
+          className="delete-btn"
+        >
+          {isLoading ? "Suppression..." : "Supprimer"}
+        </button>
       </form>
     </>
   );

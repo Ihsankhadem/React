@@ -1,23 +1,49 @@
 import logoBu from "../assets/logo-bu.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-
-function Header() {
+export default function Header() {
   const title = "Le Blog de l'Univers";
-  type Title = {title: string};
+  const location = useLocation();
 
   return (
     <header className="header">
-      <img src={logoBu} alt="Logo de l'univers" className="logo" />
-      <h1>{title}</h1>
-      <nav>
-        <Link to="/">Accueil</Link>
-        <Link to="/blog">Articles</Link>
-        <Link to="/contact">Contact</Link>
+      
+      <a href="#main-content" className="visually-hidden">
+        Aller au contenu principal
+      </a>
+      {/* Logo */}
+      <img
+        src={logoBu}
+        alt="Logo du Blog de l'Univers"
+        className="logo"
+      />
+
+      {/* Titre */}
+      <h1 id="site-title">{title}</h1>
+
+      {/*Ce label informe les lecteurs d’écran de la fonction du bloc navigation.*/}
+      <nav aria-label="Navigation principale">
+        <Link
+          to="/"
+          aria-current={location.pathname === "/" ? "page" : undefined}
+        >
+          Accueil
+        </Link>
+      {/* Le lien correspondant à la page affichée est annoncé comme actif. */}
+        <Link
+          to="/blog"
+          aria-current={location.pathname.startsWith("/blog") ? "page" : undefined}
+        >
+          Articles
+        </Link>
+
+        <Link
+          to="/contact"
+          aria-current={location.pathname === "/contact" ? "page" : undefined}
+        >
+          Contact
+        </Link>
       </nav>
     </header>
   );
 }
-
-export default Header;
-

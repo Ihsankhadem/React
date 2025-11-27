@@ -1,5 +1,5 @@
 import "../App.css";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BlogCardProps } from "./BlogCard.tsx";
 import { useNavigate } from "react-router-dom";
 
@@ -8,13 +8,29 @@ export default function FormArticles() {
     title: "",
     excerpt: "",
     image: "",
+    content:"",
   });
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState<string | null>(null);
-  
+
+  const messageRef = useRef<HTMLParagraphElement | null>(null);
   const navigate = useNavigate();
+
+    useEffect(() => {
+    if (error || success) {
+      messageRef.current?.focus();
+    }
+  }, [error, success]);
+  
+  function handleChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
+    const { name, value } = e.target;
+    setNewArticles(prev => ({ ...prev, [name]: value }));
+  }
+
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -39,7 +55,7 @@ export default function FormArticles() {
         setSuccess("Article créé avec succès !");
 
         // Reset du formulaire
-        setNewArticles({ title: "", excerpt: "", image: "" });
+        setNewArticles({ title: "", excerpt: "", image: "" , content: ""});
 
         // Redirection vers /blog 
         setTimeout(() => {
@@ -54,36 +70,49 @@ export default function FormArticles() {
 
     return (
       <>
-        <form onSubmit={handleSubmit} className="contact-form">
+          <form onSubmit={handleSubmit} aria-labelledby="form-title" className="contact-form">
+             <h2 id="form-title">Ajouter un nouvel article</h2>
+
+        <label htmlFor="title" className="">Titre de l’article :</label>
           <input
             type="text"
             name="title"
             value={newArticles.title}
-            onChange={(e)=> setNewArticles({ ...newArticles, title: e.target.value })}
+            onChange={handleChange}
             placeholder="Titre"
             required
           />
-
+        
+        <label htmlFor="excerpt">Résumé :</label>
           <textarea
             name="excerpt"
             value={newArticles.excerpt}
-            onChange={(e) => setNewArticles({ ...newArticles, excerpt: e.target.value })}
+            onChange={handleChange}
             placeholder="Résumé"
             required
           />
-
+        <label htmlFor="image">Choisir votre image :</label>
           <input
             type="text"
             name="image"
             value={newArticles.image}
-            onChange={(e) => setNewArticles({ ...newArticles, image: e.target.value })}
+            onChange={handleChange}
             placeholder="URL de l'image"
+            required
+          />
+        <label htmlFor="content">Contenu de l’article :</label>
+          <textarea
+            name="excerpt"
+            value={newArticles.content}
+            onChange={handleChange}
+            placeholder="Contenue de l'article"
             required
           />
 
       {/* Messages d'erreur et de succès */}
 {error && (
-  <p style={{
+  <p ref={messageRef} role="alert" tabIndex={-1} 
+  style={{
     backgroundColor: "#f8d7da",
     color: "#721c24",
     padding: "10px 15px",
@@ -98,7 +127,8 @@ export default function FormArticles() {
 )}
 
 {success && (
-  <p style={{
+  <p ref={messageRef} role="alert" tabIndex={-1} 
+  style={{
     backgroundColor: "#d4edda",
     color: "#155724",
     padding: "10px 15px",
@@ -113,7 +143,7 @@ export default function FormArticles() {
 )}
 
 
-          <button type="submit" disabled={isLoading}>
+          <button type="submit" aria-disabled={isLoading} disabled={isLoading}>
             {isLoading ? "Envoi..." : "Ajouter"}
           </button>
         </form>

@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 
 
 export default function Blog() {
-  // Récupère le texte recherché depuis l’URL
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const searchQuery = queryParams.get("search")?.toLowerCase() || "";

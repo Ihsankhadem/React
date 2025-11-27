@@ -1,8 +1,5 @@
-// Ajout d'une question + commentaire
-
-import { FC, ReactHTMLElement, useState } from "react";
+import { FC, useState } from "react";
 import { Link } from "react-router-dom";
-
 
 type Article = {
   titre: string;
@@ -49,53 +46,92 @@ const Home: FC = () => {
   ];
 
   const [comments, setComments] = useState<string>("");
-  const [randomQuestions, setRandomQuestions] = useState<string>("");
-
-  
+  const [randomQuestions, setRandomQuestions] = useState<string>(
+  questions[Math.floor(Math.random() * questions.length)]
+);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const choice = questions[Math.floor(Math.random() * questions.length)];
-    setRandomQuestions(choice)
+    setRandomQuestions(choice);
   }
 
   return (
     <>
-    
-<div className="sun-video-container">
-  <section className="sun-question-block">
-    <div className="sun-question">{randomQuestions}</div>
-    <form onSubmit={handleSubmit} className="sun-form">
-      <input
-        type="text"
-        value={comments}
-        onChange={(e) => setComments(e.target.value)}
-        placeholder="Et toi, qu'en penses-tu ?"
-        className="sun-input"
-      />
-      <button className="button-envoie">Envoie</button>
-    </form>
-  </section>
+      {/* Section introduction */}
+      <section className="home-intro">
+        <h2>Bienvenue dans l’univers fascinant</h2>
 
-  <iframe
-    width="560"
-    height="315"
-    src="https://www.youtube.com/embed/G6A72ufn3l4?autoplay=1&mute=1"
-    title="YouTube video player"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerPolicy="strict-origin-when-cross-origin"
-    allowFullScreen
-  ></iframe>
-</div>
+        <p>
+          Plonge au cœur du cosmos et découvre les mystères qui entourent notre univers :
+          étoiles géantes, planètes intrigantes, galaxies lointaines et phénomènes
+          encore inexplicables. Chaque article est une porte ouverte vers l’inconnu.
+        </p>
+
+        <p>
+          Que tu sois passionné d’astronomie, amateur de science-fiction ou simple
+          curieux, tu trouveras ici des découvertes étonnantes, des récits inspirants
+          et des questions qui bousculent notre vision du monde.
+        </p>
+
+        <p>
+          Observe, explore, questionne : l’univers évolue sans cesse, et nous aussi.
+          Partage ton avis, tes théories et laisse ton imagination voyager au-delà
+          des frontières de notre planète.
+        </p>
+
+        <p className="home-intro-highlight">
+          Alors prépare-toi à lever les yeux vers les étoiles... l’aventure commence maintenant ✨
+        </p>
+      </section>
+
+      {/* Bloc vidéo + question */}
+      <div className="sun-video-container">
+        <section className="sun-question-block">
+          <div
+            className="sun-question"
+            aria-live="polite"
+          >
+            {randomQuestions}
+          </div>
+
+          <form onSubmit={handleSubmit} className="sun-form">
 
 
+            <input
+              id="comment-input"
+              type="text"
+              value={comments}
+              onChange={(e) => setComments(e.target.value)}
+              placeholder="Et toi, qu'en penses-tu ?"
+              className="sun-input"
+            />
+
+            <button type="submit" className="button-envoie">
+              Envoie
+            </button>
+          </form>
+        </section>
+
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/G6A72ufn3l4?autoplay=1&mute=1"
+          title="Vidéo du soleil en haute définition"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        ></iframe>
+      </div>
+
+      {/* Section articles */}
       <div className="home-page">
         <section className="home-content">
           <Link to="/blog" className="home-link">
             Explorer le blog
           </Link>
 
-          <h1 className="popular-articles-title">Articles Populaires :</h1>
+          <h2 className="popular-articles-title">Articles Populaires :</h2>
 
           <div className="home-articles-grid">
             {articles.map((article, index) => (
@@ -114,3 +150,6 @@ const Home: FC = () => {
 };
 
 export default Home;
+
+
+
