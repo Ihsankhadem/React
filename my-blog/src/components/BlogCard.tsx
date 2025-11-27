@@ -44,8 +44,6 @@ export default function BlogCard({ id, title, excerpt, image, liked = false }: B
         <div className="blog-card-like">
           <button
             className="like-button"
-// 2. () => setIsLiked(prev => !prev) = setIsLiked est la fonction qui met à jour l’état isLiked (créé avec useState).
-// prev représente la valeur actuelle de isLiked. !prev inverse cette valeur 
             onClick={() => setIsLiked(prev => !prev)}
             aria-label={isLiked ? "Vous aimez cet article" : "Aimer cet article"}
           >
