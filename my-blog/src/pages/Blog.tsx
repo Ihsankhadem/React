@@ -12,7 +12,7 @@ export default function Blog() {
 
   const [articles, setArticles] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const pageSize = 5;
+  const pageSize = 7;
 
   useEffect(() => {
     fetch("http://localhost:3001/articles")
@@ -29,7 +29,7 @@ export default function Blog() {
       article.excerpt.toLowerCase().includes(searchQuery)
   );
 
-  // Pagination
+// Pagination
   const totalPages = Math.ceil(filteredArticles.length / pageSize);
   const startIndex = (currentPage - 1) * pageSize;
   const paginatedArticles = filteredArticles.slice(
