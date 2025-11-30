@@ -3,7 +3,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function DeleteArticle() {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
@@ -32,12 +32,16 @@ export default function DeleteArticle() {
     setError(null);
     setSuccess(null);
 
+    // Changer le port vers ton serveur Express
     fetch(`http://localhost:3001/articles/${id}`, {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
     })
       .then((response) => {
         if (!response.ok) throw new Error("Impossible de supprimer l’article");
-        setSuccess("✅ Article supprimé !");
+        setSuccess("Article supprimé !");
         setTimeout(() => navigate("/blog"), 1500);
       })
       .catch((err: any) => {
@@ -48,22 +52,13 @@ export default function DeleteArticle() {
   }
 
   return (
-    <>
+    <div className="delete-article-container">
       {error && (
         <p
           ref={messageRef}
           role="alert"
           tabIndex={-1}
-          style={{
-            backgroundColor: "#f8d7da",
-            color: "#721c24",
-            padding: "10px 15px",
-            borderRadius: "8px",
-            border: "1px solid #f5c6cb",
-            margin: "10px 0",
-            fontWeight: "bold",
-            textAlign: "center",
-          }}
+          className="error-message"
         >
           {error}
         </p>
@@ -74,16 +69,7 @@ export default function DeleteArticle() {
           ref={messageRef}
           role="alert"
           tabIndex={-1}
-          style={{
-            backgroundColor: "#d4edda",
-            color: "#155724",
-            padding: "10px 15px",
-            borderRadius: "8px",
-            border: "1px solid #c3e6cb",
-            margin: "10px 0",
-            fontWeight: "bold",
-            textAlign: "center",
-          }}
+          className="success-message"
         >
           {success}
         </p>
@@ -92,9 +78,10 @@ export default function DeleteArticle() {
       <button
         onClick={handleDelete}
         disabled={isLoading}
+        className="delete-btn"
       >
         {isLoading ? "Suppression..." : "Supprimer"}
       </button>
-    </>
+    </div>
   );
 }

@@ -32,7 +32,7 @@ export default function UpdateArticle() {
       return;
     }
 
-    fetch(`http://localhost:3001/articles/${id}`)
+    fetch(`http://localhost:5000/articles/${id}`)
       .then((res) => {
         if (!res.ok) throw new Error("Article introuvable");
         return res.json();
@@ -53,7 +53,7 @@ export default function UpdateArticle() {
     setError(null);
     setSuccess(null);
 
-    fetch(`http://localhost:3001/articles/${id}`, {
+    fetch(`http://localhost:5000//articles/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(editArticle),
@@ -63,7 +63,7 @@ export default function UpdateArticle() {
         return res.json();
       })
       .then(() => {
-        setSuccess("✅ Article mis à jour avec succès !");
+        setSuccess("Article mis à jour avec succès !");
         setTimeout(() => navigate("/blog"), 1500);
       })
       .catch((err: any) => setError(err.message || "Une erreur est survenue"))
