@@ -32,7 +32,7 @@ export default function UpdateArticle() {
       return;
     }
 
-    fetch(`http://localhost:5000/articles/${id}`)
+    fetch(`http://localhost:3001/articles/${id}`)
       .then((res) => {
         if (!res.ok) throw new Error("Article introuvable");
         return res.json();
