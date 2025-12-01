@@ -12,7 +12,7 @@ export default function Blog() {
 
   const [articles, setArticles] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const pageSize = 7;
+  const pageSize = 10;
 
   useEffect(() => {
     fetch("http://localhost:3001/articles")

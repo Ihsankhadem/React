@@ -1,24 +1,32 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
+interface Article {
+  id?: number;
+  title: string;
+  excerpt: string;
+  image: string;
+  content: string;
+}
+
 export default function UpdateArticle() {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  const [editArticle, setEditArticle] = useState({
+  const [editArticle, setEditArticle] = useState<Article>({
     title: "",
     excerpt: "",
     image: "",
     content: "",
   });
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
   const messageRef = useRef<HTMLParagraphElement | null>(null);
 
-  // Focus automatique sur message succès/erreur
+  // Focus auto sur messages
   useEffect(() => {
     if (messageRef.current) {
       messageRef.current.focus();
@@ -41,7 +49,7 @@ export default function UpdateArticle() {
       .catch(() => setError("Impossible de charger l'article"));
   }, [id]);
 
-  // Mise à jour
+  // Mettre à jour l’article
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!id) {
@@ -53,7 +61,7 @@ export default function UpdateArticle() {
     setError(null);
     setSuccess(null);
 
-    fetch(`http://localhost:5000//articles/${id}`, {
+    fetch(`http://localhost:3001/articles/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(editArticle),
@@ -70,17 +78,14 @@ export default function UpdateArticle() {
       .finally(() => setIsLoading(false));
   }
 
-  // Suppression de l'article
+  // Suppression
   function handleDelete() {
     if (!id) {
       setError("Identifiant article manquant");
       return;
     }
 
-    const confirmDelete = window.confirm(
-      "Voulez-vous vraiment supprimer cet article ? Cette action est définitive."
-    );
-    if (!confirmDelete) return;
+    if (!window.confirm("Voulez-vous vraiment supprimer cet article ?")) return;
 
     setIsLoading(true);
     setError(null);
@@ -97,100 +102,104 @@ export default function UpdateArticle() {
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className="contact-form">
+    <form onSubmit={handleSubmit} className="contact-form">
+      <h2 id="form-title">Modifier l'article</h2>
 
-<h2 id="form-title">Modifier l'article</h2>
+      <label htmlFor="title">Titre de l’article :</label>
+      <input
+        type="text"
+        name="title"
+        value={editArticle.title}
+        onChange={(e) =>
+          setEditArticle({ ...editArticle, title: e.target.value })
+        }
+        required
+      />
 
-  <label htmlFor="title" className="">Titre de l’article :</label>
-        <input
-          type="text"
-          name="title"
-          value={editArticle.title}
-          onChange={(e) => setEditArticle({ ...editArticle, title: e.target.value })}
-          placeholder="Titre"
-          required
-        />
-  <label htmlFor="excerpt">Résumé :</label>
-        <textarea
-          name="excerpt"
-          value={editArticle.excerpt}
-          onChange={(e) => setEditArticle({ ...editArticle, excerpt: e.target.value })}
-          placeholder="Résumé"
-          required
-        />
-  <label htmlFor="image">Choisir votre image :</label>
-        <input
-          type="text"
-          name="image"
-          value={editArticle.image}
-          onChange={(e) => setEditArticle({ ...editArticle, image: e.target.value })}
-          placeholder="URL de l'image"
-          required
-        />
-  <label htmlFor="content">Contenu de l’article :</label>
-        <textarea
-          name="content"
-          value={editArticle.content}
-          onChange={(e) => setEditArticle({ ...editArticle, content: e.target.value })}
-          placeholder="Contenu"
-          required
-        />
+      <label htmlFor="excerpt">Résumé :</label>
+      <textarea
+        name="excerpt"
+        value={editArticle.excerpt}
+        onChange={(e) =>
+          setEditArticle({ ...editArticle, excerpt: e.target.value })
+        }
+        required
+      />
 
-        {/* Messages d'erreur et de succès */}
-        {error && (
-          <p
-            ref={messageRef}
-            role="alert"
-            tabIndex={-1}
-            style={{
-              backgroundColor: "#f8d7da",
-              color: "#721c24",
-              padding: "10px 15px",
-              borderRadius: "8px",
-              border: "1px solid #f5c6cb",
-              margin: "10px 0",
-              fontWeight: "bold",
-              textAlign: "center",
-            }}
-          >
-            {error}
-          </p>
-        )}
+      <label htmlFor="image">Image :</label>
+      <input
+        type="text"
+        name="image"
+        value={editArticle.image}
+        onChange={(e) =>
+          setEditArticle({ ...editArticle, image: e.target.value })
+        }
+        required
+      />
 
-        {success && (
-          <p
-            ref={messageRef}
-            role="alert"
-            tabIndex={-1}
-            style={{
-              backgroundColor: "#d4edda",
-              color: "#155724",
-              padding: "10px 15px",
-              borderRadius: "8px",
-              border: "1px solid #c3e6cb",
-              margin: "10px 0",
-              fontWeight: "bold",
-              textAlign: "center",
-            }}
-          >
-            {success}
-          </p>
-        )}
+      <label htmlFor="content">Contenu :</label>
+      <textarea
+        name="content"
+        value={editArticle.content}
+        onChange={(e) =>
+          setEditArticle({ ...editArticle, content: e.target.value })
+        }
+        required
+      />
 
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? "Envoi..." : "Modifier"}
-        </button>
-
-        <button
-          type="button"
-          onClick={handleDelete}
-          disabled={isLoading}
-          className="delete-btn"
+      {/* Messages */}
+      {error && (
+        <p
+          ref={messageRef}
+          role="alert"
+          tabIndex={-1}
+          style={{
+            backgroundColor: "#f8d7da",
+            color: "#721c24",
+            padding: "10px 15px",
+            borderRadius: "8px",
+            border: "1px solid #f5c6cb",
+            margin: "10px 0",
+            fontWeight: "bold",
+            textAlign: "center",
+          }}
         >
-          {isLoading ? "Suppression..." : "Supprimer"}
-        </button>
-      </form>
-    </>
+          {error}
+        </p>
+      )}
+
+      {success && (
+        <p
+          ref={messageRef}
+          role="alert"
+          tabIndex={-1}
+          style={{
+            backgroundColor: "#d4edda",
+            color: "#155724",
+            padding: "10px 15px",
+            borderRadius: "8px",
+            border: "1px solid #c3e6cb",
+            margin: "10px 0",
+            fontWeight: "bold",
+            textAlign: "center",
+          }}
+        >
+          {success}
+        </p>
+      )}
+
+      <button type="submit" disabled={isLoading}>
+        {isLoading ? "Envoi..." : "Modifier"}
+      </button>
+
+      <button
+        type="button"
+        onClick={handleDelete}
+        disabled={isLoading}
+        className="delete-btn"
+      >
+        {isLoading ? "Suppression..." : "Supprimer"}
+      </button>
+    </form>
   );
 }
