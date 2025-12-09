@@ -10,7 +10,6 @@ export default function DeleteArticle() {
   const messageRef = useRef<HTMLParagraphElement | null>(null);
   const navigate = useNavigate();
 
-  // Auto-focus sur le message d'erreur ou succès
   useEffect(() => {
     if (messageRef.current) {
       messageRef.current.focus();
@@ -32,8 +31,7 @@ export default function DeleteArticle() {
     setError(null);
     setSuccess(null);
 
-    // Changer le port vers ton serveur Express
-    fetch(`http://localhost:3001/articles/${id}`, {
+    fetch(`http://localhost:5000/articles/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

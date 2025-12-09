@@ -15,7 +15,7 @@ export default function Blog() {
   const pageSize = 10;
 
   useEffect(() => {
-    fetch("http://localhost:3001/articles")
+    fetch("http://localhost:5000/articles")
       .then((response) => response.json())
       .then((data) => setArticles(data))
       .catch((error) =>

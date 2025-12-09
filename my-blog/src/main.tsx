@@ -29,7 +29,7 @@ root.render(
           <Route path="/updatearticle/:id" element={<UpdateArticlePage />} />
           <Route path="/deletearticle/:id" element={<DeleteArticlePage />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/contentarticle:id" element={<Article/>} />
+          <Route path="/contentarticle/:id" element={<Article />} />
           <Route path="/search" element={<SearchBar />} />
           <Route path="*" element={<NotFound/>}/>
         </Routes>

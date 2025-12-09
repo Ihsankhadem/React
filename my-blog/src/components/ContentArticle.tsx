@@ -20,7 +20,7 @@ export default function ContentArticle() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/articles?id=${id}`)
+    fetch(`http://localhost:5000/articles?id=${id}`)
       .then(res => res.json())
       .then(data => {
         if (!data.length) throw new Error("Article introuvable");
