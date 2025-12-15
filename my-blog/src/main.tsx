@@ -13,6 +13,7 @@ import NotFound from "./components/NotFound.tsx";
 import AddArticles from "./pages/AddArticles.tsx";
 import UpdateArticlePage from "./pages/UpdateArticlePage.tsx";
 import DeleteArticlePage from "./pages/DeleteArticlePage.tsx";
+import ContentArticle from "./components/ContentArticle.tsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
@@ -24,12 +25,12 @@ root.render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:id" element={<Article />} /> 
+          <Route path="/blog/:id" element={<ContentArticle />} /> 
           <Route path="/addarticle" element={<AddArticles/>} />
           <Route path="/updatearticle/:id" element={<UpdateArticlePage />} />
           <Route path="/deletearticle/:id" element={<DeleteArticlePage />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/contentarticle/:id" element={<Article />} />
+          {/* <Route path="/contentarticle/:id" element={<Article />} /> */}
           <Route path="/search" element={<SearchBar />} />
           <Route path="*" element={<NotFound/>}/>
         </Routes>

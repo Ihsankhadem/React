@@ -52,26 +52,17 @@ export default function DeleteArticle() {
   return (
     <div className="delete-article-container">
       {error && (
-        <p
-          ref={messageRef}
-          role="alert"
-          tabIndex={-1}
-          className="error-message"
-        >
+        <p ref={messageRef} className="error-msg" role="alert" tabIndex={-1}>
           {error}
         </p>
       )}
 
       {success && (
-        <p
-          ref={messageRef}
-          role="alert"
-          tabIndex={-1}
-          className="success-message"
-        >
+        <p ref={messageRef} className="success-msg" role="alert" tabIndex={-1}>
           {success}
         </p>
       )}
+
 
       <button
         onClick={handleDelete}

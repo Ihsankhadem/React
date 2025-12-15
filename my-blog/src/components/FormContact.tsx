@@ -1,5 +1,3 @@
-
-
 import { useState, useRef, useEffect } from "react";
 
 interface ContactData {
@@ -53,89 +51,83 @@ export default function FormContact() {
     }, 1000);
   }
 
-
-
   return (
-      <form onSubmit={handleSubmit} aria-labelledby="contact-title" className="contact-form">
+    <form
+      onSubmit={handleSubmit}
+      aria-labelledby="contact-title"
+      className="contact-form"
+      autoComplete="off"
+    >
+      <h2 id="contact-title">Contactez-nous</h2>
 
+      {/* Message d'erreur */}
       {error && (
         <p
           ref={messageRef}
           role="alert"
           tabIndex={-1}
-          style={{
-            backgroundColor: "#f8d7da",
-            color: "#721c24",
-            padding: "12px 16px",
-            borderRadius: "8px",
-            border: "1px solid #f5c6cb",
-            margin: "10px 0",
-            fontWeight: "bold",
-          }}
+          className="error-msg"
         >
           {error}
         </p>
       )}
 
+      {/* Message succès */}
       {success && (
         <p
           ref={messageRef}
           role="status"
           tabIndex={-1}
-          style={{
-            backgroundColor: "#d4edda",
-            color: "#155724",
-            padding: "12px 16px",
-            borderRadius: "8px",
-            border: "1px solid #c3e6cb",
-            margin: "10px 0",
-            fontWeight: "bold",
-          }}
+          className="success-msg"
         >
           {success}
         </p>
       )}
 
-
-      <label>
-        Nom :
+      {/* Nom */}
+      <div className="form-row">
+        <label htmlFor="name">Nom :</label>
         <input
           type="text"
-          name="name"  
-          value={formData.name}
+          id="name"
+          name="name"
           autoComplete="given-name"
+          value={formData.name}
           onChange={handleChange}
           required
         />
-      </label>
-  
-      <label>
-        Email :
+      </div>
+
+      {/* Email */}
+      <div className="form-row">
+        <label htmlFor="email">Email :</label>
         <input
           type="email"
-          name="email"  
-          value={formData.email}
+          id="email"
+          name="email"
           autoComplete="email"
+          value={formData.email}
           onChange={handleChange}
           required
         />
-      </label>
+      </div>
 
-      <label>
-        Message :
+      {/* Message */}
+      <div className="form-row">
+        <label htmlFor="message">Message :</label>
         <textarea
+          id="message"
+          name="message"
           value={formData.message}
-          name="message"  
           onChange={handleChange}
           required
-        />
-      </label>
+        ></textarea>
+      </div>
 
-          <button type="submit" aria-disabled={isLoading} disabled={isLoading}>
-            {isLoading ? "Envoi..." : "Envoyer"}
-          </button>
-      
+      {/* Bouton */}
+      <button className="form-buttons" type="submit" disabled={isLoading} aria-disabled={isLoading}>
+        {isLoading ? "Envoi..." : "Envoyer"}
+      </button>
     </form>
   );
 }
-

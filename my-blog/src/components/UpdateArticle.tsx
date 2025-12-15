@@ -28,8 +28,8 @@ export default function UpdateArticle() {
 
   // Focus auto sur messages
   useEffect(() => {
-    if (messageRef.current) {
-      messageRef.current.focus();
+    if (error || success) {
+      messageRef.current?.focus();
     }
   }, [error, success]);
 
@@ -49,11 +49,12 @@ export default function UpdateArticle() {
       .catch(() => setError("Impossible de charger l'article"));
   }, [id]);
 
-  // Mettre à jour l’article
+  // Soumission formulaire
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
     if (!id) {
-      setError("Identifiant article manquant");
+      setError("Identifiant manquant");
       return;
     }
 
@@ -74,14 +75,16 @@ export default function UpdateArticle() {
         setSuccess("Article mis à jour avec succès !");
         setTimeout(() => navigate("/blog"), 1500);
       })
-      .catch((err: any) => setError(err.message || "Une erreur est survenue"))
+      .catch((err: any) =>
+        setError(err.message || "Une erreur est survenue")
+      )
       .finally(() => setIsLoading(false));
   }
 
   // Suppression
   function handleDelete() {
     if (!id) {
-      setError("Identifiant article manquant");
+      setError("Identifiant manquant");
       return;
     }
 
@@ -90,116 +93,108 @@ export default function UpdateArticle() {
     setIsLoading(true);
     setError(null);
     setSuccess(null);
+console.log(editArticle)
 
-    fetch(`http://localhost:5000/articles/${id}`, { method: "DELETE" })
+fetch(`http://localhost:5000/articles/${id}`, {
+      method: "DELETE",
+    })
       .then((res) => {
-        if (!res.ok) throw new Error("Impossible de supprimer l’article");
+        if (!res.ok) throw new Error("Impossible de supprimer l'article");
         setSuccess("Article supprimé !");
         setTimeout(() => navigate("/blog"), 1500);
       })
-      .catch((err: any) => setError(err.message || "Erreur lors de la suppression"))
+      .catch((err) =>
+        setError(err.message || "Erreur lors de la suppression")
+      )
       .finally(() => setIsLoading(false));
   }
 
   return (
-    <form onSubmit={handleSubmit} className="contact-form">
-      <h2 id="form-title">Modifier l'article</h2>
-
-      <label htmlFor="title">Titre de l’article :</label>
-      <input
-        type="text"
-        name="title"
-        value={editArticle.title}
-        onChange={(e) =>
-          setEditArticle({ ...editArticle, title: e.target.value })
-        }
-        required
-      />
-
-      <label htmlFor="excerpt">Résumé :</label>
-      <textarea
-        name="excerpt"
-        value={editArticle.excerpt}
-        onChange={(e) =>
-          setEditArticle({ ...editArticle, excerpt: e.target.value })
-        }
-        required
-      />
-
-      <label htmlFor="image">Image :</label>
-      <input
-        type="text"
-        name="image"
-        value={editArticle.image}
-        onChange={(e) =>
-          setEditArticle({ ...editArticle, image: e.target.value })
-        }
-        required
-      />
-
-      <label htmlFor="content">Contenu :</label>
-      <textarea
-        name="content"
-        value={editArticle.content}
-        onChange={(e) =>
-          setEditArticle({ ...editArticle, content: e.target.value })
-        }
-        required
-      />
+    <form onSubmit={handleSubmit} className="contact-form" aria-labelledby="update-title">
+      <h2 id="update-title">Modifier l’article</h2>
 
       {/* Messages */}
       {error && (
-        <p
-          ref={messageRef}
-          role="alert"
-          tabIndex={-1}
-          style={{
-            backgroundColor: "#f8d7da",
-            color: "#721c24",
-            padding: "10px 15px",
-            borderRadius: "8px",
-            border: "1px solid #f5c6cb",
-            margin: "10px 0",
-            fontWeight: "bold",
-            textAlign: "center",
-          }}
-        >
+        <p ref={messageRef} className="error-msg" role="alert" tabIndex={-1}>
           {error}
         </p>
       )}
 
       {success && (
-        <p
-          ref={messageRef}
-          role="alert"
-          tabIndex={-1}
-          style={{
-            backgroundColor: "#d4edda",
-            color: "#155724",
-            padding: "10px 15px",
-            borderRadius: "8px",
-            border: "1px solid #c3e6cb",
-            margin: "10px 0",
-            fontWeight: "bold",
-            textAlign: "center",
-          }}
-        >
+        <p ref={messageRef} className="success-msg" role="alert" tabIndex={-1}>
           {success}
         </p>
       )}
 
-      <button type="submit" disabled={isLoading}>
-        {isLoading ? "Envoi..." : "Modifier"}
-      </button>
+      {/* Titre */}
+      <div className="form-row">
+        <label htmlFor="title">Titre :</label>
+        <input
+          id="title"
+          type="text"
+          name="title"
+          value={editArticle.title}
+          onChange={(e) =>
+            setEditArticle({ ...editArticle, title: e.target.value })
+          }
+          required
+        />
+      </div>
 
-      <button
-        type="button"
-        onClick={handleDelete}
-        disabled={isLoading}
-        className="delete-btn"
-      >
-        {isLoading ? "Suppression..." : "Supprimer"}
-      </button>
+      {/* Résumé */}
+      <div className="form-row">
+        <label htmlFor="excerpt">Résumé :</label>
+        <textarea
+          id="excerpt"
+          name="excerpt"
+          value={editArticle.excerpt}
+          onChange={(e) =>
+            setEditArticle({ ...editArticle, excerpt: e.target.value })
+          }
+          required
+        ></textarea>
+      </div>
+
+      {/* Image */}
+      <div className="form-row">
+        <label htmlFor="image">Image (URL) :</label>
+        <input
+          id="image"
+          type="url"
+          name="image"
+          value={editArticle.image}
+          onChange={(e) =>
+            setEditArticle({ ...editArticle, image: e.target.value })
+          }
+          required
+        />
+      </div>
+
+      {/* Contenu */}
+      <div className="form-row">
+        <label htmlFor="content">Contenu :</label>
+        <textarea
+          id="content"
+          name="content"
+          value={editArticle.content}
+          onChange={(e) =>
+            setEditArticle({ ...editArticle, content: e.target.value })
+          }
+          required
+        ></textarea>
+      </div>
+
+      {/* Boutons */}
+      <div className="form-buttons">
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? "Envoi..." : "Modifier"}
+        </button>
+
+        <button className="delete-btn" type="button" onClick={handleDelete} disabled={isLoading}>
+          {isLoading ? "Suppression..." : "Supprimer"}
+        </button>
+      </div>
+
     </form>
   );
 }

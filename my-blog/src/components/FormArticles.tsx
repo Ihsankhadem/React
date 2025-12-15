@@ -1,157 +1,153 @@
 import "../App.css";
 import React, { useEffect, useRef, useState } from "react";
-import { BlogCardProps } from "./BlogCard.tsx";
 import { useNavigate } from "react-router-dom";
 
+interface NewArticle {
+  title: string;
+  excerpt: string;
+  image: string;
+  content: string;
+}
+
 export default function FormArticles() {
-  const [newArticles, setNewArticles] = useState({
+  const [newArticle, setNewArticle] = useState<NewArticle>({
     title: "",
     excerpt: "",
     image: "",
-    content:"",
+    content: "",
   });
 
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
-  const messageRef = useRef<HTMLParagraphElement | null>(null);
   const navigate = useNavigate();
+  const messageRef = useRef<HTMLParagraphElement | null>(null);
 
-    useEffect(() => {
+  useEffect(() => {
     if (error || success) {
       messageRef.current?.focus();
     }
   }, [error, success]);
-  
-  
+
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
     const { name, value } = e.target;
-    setNewArticles(prev => ({ ...prev, [name]: value }));
+    setNewArticle(prev => ({ ...prev, [name]: value }));
   }
 
-
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
     setSuccess(null);
 
+    try {
+      const res = await fetch("http://localhost:5000/articles", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Requested-With": "XMLHttpRequest",
+        },
+        body: JSON.stringify(newArticle),
+      });
 
-    fetch("http://localhost:5000/articles", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-  // SECURITY: prevent CSRF if backend accepts it
-        "X-Requested-With": "XMLHttpRequest"
-      },
-      body: JSON.stringify(newArticles),
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error("Erreur serveur");
-        return res.json();
-      })
-      .then((data) => {
-        console.log("Article créé :", data);
-        setSuccess("Article créé avec succès !");
+      if (!res.ok) throw new Error("Erreur serveur");
 
-        // Reset du formulaire
-        setNewArticles({ title: "", excerpt: "", image: "" , content: ""});
+      setSuccess("Article créé avec succès !");
 
-        // Redirection vers /blog 
-        setTimeout(() => {
-          navigate("/blog");
-        }, 1900);
-      })
+      setNewArticle({
+        title: "",
+        excerpt: "",
+        image: "",
+        content: "",
+      });
 
-
-      .catch((err) => setError(err.message))
-      .finally(() => setIsLoading(false));
+      setTimeout(() => {
+        navigate("/blog");
+      }, 1500);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
     }
+  }
 
-    return (
-      <>
-          <form onSubmit={handleSubmit} aria-labelledby="form-title" className="contact-form" autoComplete="off">
-             <h2 id="form-title">Ajouter un nouvel article</h2>
+  return (
+    <form
+      onSubmit={handleSubmit}
+      aria-labelledby="form-title"
+      className="contact-form"
+      autoComplete="off"
+    >
+      <h2 id="form-title">Créer un article</h2>
 
-        <label htmlFor="title" className="">Titre de l’article :</label>
-          <input
-            type="text"
-            name="title"
-            value={newArticles.title}
-            onChange={handleChange}
-            placeholder="Titre"
-            required
-          />
-        
+      {error && (
+        <p ref={messageRef} role="alert" tabIndex={-1} className="error-msg">
+          {error}
+        </p>
+      )}
+
+      {success && (
+        <p ref={messageRef} role="alert" tabIndex={-1} className="success-msg">
+          {success}
+        </p>
+      )}
+
+      {/* Titre */}
+      <div className="form-row">
+        <label htmlFor="title">Titre :</label>
+        <input
+          id="title"
+          type="text"
+          name="title"
+          value={newArticle.title}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      {/* Résumé */}
+      <div className="form-row">
         <label htmlFor="excerpt">Résumé :</label>
-          <textarea
-            name="excerpt"
-            value={newArticles.excerpt}
-            onChange={handleChange}
-            placeholder="Résumé"
-            required
-          />
-        <label htmlFor="image">Choisir votre image :</label>
-          <input
-            type="text"
-            name="image"
-            value={newArticles.image}
-            inputMode="url"
-            onChange={handleChange}
-            placeholder="https://exemple.com/image.webp"
-            required
-          />
-        <label htmlFor="content">Contenu de l’article :</label>
-          <textarea
-            name="content"
-            value={newArticles.content}
-            onChange={handleChange}
-            placeholder="Contenue de l'article"
-            required
-          />
+        <textarea
+          id="excerpt"
+          name="excerpt"
+          value={newArticle.excerpt}
+          onChange={handleChange}
+          required
+        ></textarea>
+      </div>
 
-      {/* Messages d'erreur et de succès */}
-{error && (
-  <p ref={messageRef} role="alert" tabIndex={-1} 
-  style={{
-    backgroundColor: "#f8d7da",
-    color: "#721c24",
-    padding: "10px 15px",
-    borderRadius: "8px",
-    border: "1px solid #f5c6cb",
-    margin: "10px 0",
-    fontWeight: "bold",
-    textAlign: "center",
-  }}>
-    {error}
-  </p>
-)}
+      {/* Image */}
+      <div className="form-row">
+        <label htmlFor="image">Image (URL) :</label>
+        <input
+          id="image"
+          type="url"
+          name="image"
+          value={newArticle.image}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-{success && (
-  <p ref={messageRef} role="alert" tabIndex={-1} 
-  style={{
-    backgroundColor: "#d4edda",
-    color: "#155724",
-    padding: "10px 15px",
-    borderRadius: "8px",
-    border: "1px solid #c3e6cb",
-    margin: "10px 0",
-    fontWeight: "bold",
-    textAlign: "center",
-  }}>
-    {success}
-  </p>
-)}
+      {/* Contenu */}
+      <div className="form-row">
+        <label htmlFor="content">Contenu :</label>
+        <textarea
+          id="content"
+          name="content"
+          value={newArticle.content}
+          onChange={handleChange}
+          required
+        ></textarea>
+      </div>
 
-
-          <button type="submit" aria-disabled={isLoading} disabled={isLoading}>
-            {isLoading ? "Envoi..." : "Ajouter"}
-          </button>
-        </form>
-      </>
-    );
-
+      <button type="submit" disabled={isLoading} aria-disabled={isLoading}>
+        {isLoading ? "Envoi..." : "Ajouter"}
+      </button>
+    </form>
+  );
 }

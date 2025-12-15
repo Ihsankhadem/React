@@ -27,7 +27,7 @@ export default function Header() {
           to="/"
           aria-current={location.pathname === "/" ? "page" : undefined}
         >
-          Accueil
+          Home
         </Link>
       {/* Le lien correspondant à la page affichée est annoncé comme actif. */}
         <Link
