@@ -26,6 +26,9 @@ dist-ssr/
 *.sln
 *.sw?
 
+
 # (Si tu as un backend Express)
 Express_Server/node_modules/
 Express_Server/dist/
+Express_Server/.env
+Express_Server/.env.d
